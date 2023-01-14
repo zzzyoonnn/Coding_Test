@@ -10,7 +10,7 @@ ex 1)
 입력          출력
 -             - Hello World!
 */
-public class beakjoon2557 {
+public class Beakjoon2557 {
     public static void main(String[] args) {
         System.out.println("Hello World!");
     }

@@ -16,7 +16,7 @@ ex 2)
 import java.io.*;
 import java.util.*;
 
-public class beakjoon1008 {
+public class Beakjoon1008 {
     public static void main(String[] args) throws IOException{
         double a, b;
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
