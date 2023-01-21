@@ -1,9 +1,0 @@
-/**
- * 
- */
-/**
- * @author dwsrh
- *
- */
-module java {
-}

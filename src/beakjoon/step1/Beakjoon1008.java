@@ -1,4 +1,4 @@
-package beakjoon;
+package beakjoon.step1;
 /*
 문제
 - 두 정수 A와 B를 입력받은 다음, A/B를 출력하는 프로그램을 작성하시오.
@@ -17,7 +17,7 @@ import java.io.*;
 import java.util.*;
 
 public class Beakjoon1008 {
-    public static void main(String[] args) throws IOException{
+    public static void main(String[] args) throws IOException {
         double a, b;
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String str = br.readLine();
