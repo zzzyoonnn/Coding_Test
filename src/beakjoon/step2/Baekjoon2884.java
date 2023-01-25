@@ -50,13 +50,16 @@ public class Baekjoon2884 {
         minute = Integer.parseInt(st.nextToken());
         
         if (minute < 45) {
-        	if (hour == 0) {
-        		System.out.printf("%d %d", 23, 60 + minute - 45);
-        	} else {
-        		System.out.printf("%d %d", hour - 1, 60 + minute - 45);
-        	}
+	        minute += 15;
+	        
+	        if (hour == 0) {
+	        	System.out.println(23 + " " + minute);
+	        } else {
+	        	System.out.println(hour -1 + " " + minute);
+	        }
         } else {
-            System.out.printf("%d %d", hour, minute - 45);
+        	minute -=45;
+        	System.out.println(hour + " " + minute);
         }
     }
 }
