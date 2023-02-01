@@ -27,7 +27,8 @@ public class Baekjoon2439 {
         
         a = Integer.parseInt(br.readLine());
         
-        for(int x = 1; x <= a; x++) {
+        for
+         (int x = 1; x <= a; x++) {
         	for (int y = 1; y <= a - x; y++) {
         		System.out.printf(" ");
         	}
