@@ -6,6 +6,8 @@ public class SameAddition {
         // return answer;
 		
 /*
+ * 회전 횟수 = 배열의 길이 * 3 이 최대 회전 횟수 <- 배열의 길이가 같을 경우
+ * 두 배열의 길이의 합 + 작은 배열의 크기 
 
 두 큐의 합 같게 만들기
 
