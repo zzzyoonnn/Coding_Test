@@ -25,13 +25,19 @@ import java.util.*;
 
 public class Baekjoon10807 {
 	public static void main(String[] args) throws IOException {
+		// BufferedReader를 이용하여 값 입력받기
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        
         // 정수의 개수
+        // Enter로 읽어들임
         int n = Integer.parseInt(br.readLine());
         int arr[] = new int[n];
         // 주어진 정수
+        // Enter 쳤을 시 값이 입력 됨
         StringTokenizer st = new StringTokenizer(br.readLine());
         
+        // 입력된 값들을 arr에 넣음
+        // 띄어쓰기를 기준으로 각 배열에 값이 들어간다.
         for (int i = 0; i < arr.length; i++) {
         	arr[i] = Integer.parseInt(st.nextToken());
         }
@@ -40,6 +46,8 @@ public class Baekjoon10807 {
         int findNum = Integer.parseInt(br.readLine());
         int count = 0;
         
+        // arr[0]부터 끝까지 확인해보며 findNum과 같은 수가 있을 시
+        // count가 1씩 증가
         for (int j = 0; j < arr.length; j++) {
         	if (arr[j] == findNum) {
         		count++;
