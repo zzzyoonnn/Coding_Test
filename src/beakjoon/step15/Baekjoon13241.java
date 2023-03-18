@@ -1,4 +1,4 @@
-package beakjoon.individual;
+package beakjoon.step15;
 /*
 문제
 - 두 자연수 A와 B에 대해서, A의 배수이면서 B의 배수인 자연수를 A와 B의 공배수라고 한다.
@@ -24,7 +24,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.StringTokenizer;
 
-public class Baekjoon1934 {
+public class Baekjoon13241 {
 	
 	public static void main(String[] agrs) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
