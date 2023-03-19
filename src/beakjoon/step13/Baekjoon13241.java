@@ -1,4 +1,4 @@
-package beakjoon.step15;
+package beakjoon.step13;
 /*
 문제
 - 두 자연수 A와 B에 대해서, A의 배수이면서 B의 배수인 자연수를 A와 B의 공배수라고 한다.

@@ -1,4 +1,4 @@
-package beakjoon.step15;
+package beakjoon.step13;
 /*
 문제
 - 분수 A/B는 분자가 A, 분모가 B인 분수를 의미한다.

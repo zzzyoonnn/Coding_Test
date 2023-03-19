@@ -1,4 +1,4 @@
-package beakjoon.step15;
+package beakjoon.step13;
 /*
 문제
 - 정수 B에 0보다 큰 정수인 N을 곱해 정수 A를 만들 수 있다면, A는 B의 배수이다.
