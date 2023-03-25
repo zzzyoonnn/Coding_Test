@@ -1,4 +1,4 @@
-package beakjoon.step1;
+package beakjoon.step01;
 /*
 문제
 - (A+B)%C는 ((A%C) + (B%C))%C 와 같을까?

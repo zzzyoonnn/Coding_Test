@@ -1,4 +1,4 @@
-package beakjoon.step1;
+package beakjoon.step01;
 /*
 문제
 - Hello World!를 출력하시오.

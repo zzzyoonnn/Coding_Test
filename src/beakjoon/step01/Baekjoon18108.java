@@ -1,4 +1,4 @@
-package beakjoon.step1;
+package beakjoon.step01;
 /*
 문제
 - ICPC Bangkok Regional에 참가하기 위해

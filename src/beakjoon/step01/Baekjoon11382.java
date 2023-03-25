@@ -1,4 +1,4 @@
-package beakjoon.step1;
+package beakjoon.step01;
 /*
 문제
 - 꼬마 정민이는 이제 A + B 정도는 쉽게 계산할 수 있다.
