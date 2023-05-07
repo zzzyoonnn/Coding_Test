@@ -1,4 +1,4 @@
-package beakjoon.step5;
+package beakjoon.step05;
 /*
 문제
 - 입력 받은 대로 출력하는 프로그램을 작성하시오.

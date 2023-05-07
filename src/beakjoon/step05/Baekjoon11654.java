@@ -1,4 +1,4 @@
-package beakjoon.step5;
+package beakjoon.step05;
 /*
 문제
 - 알파벳 소문자, 대문자, 숫자 0-9중 하나가 주어졌을 때,
