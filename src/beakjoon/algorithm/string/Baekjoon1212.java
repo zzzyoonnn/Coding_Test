@@ -10,23 +10,31 @@ package beakjoon.algorithm.string;
 ex 1)
 입력		출력
 - 314		- 11001100
-*/
-import java.io.*;
-import java.util.*;
+ */
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Baekjoon1212 {
-	public static void main(String[] agrs) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        // 테스트 케이스 갯수
-        int n = Integer.parseInt(br.readLine());
-        
-        for (int i = 0; i < n; i++) {
-        	StringTokenizer st = new StringTokenizer(br.readLine(),",");
-        	
-        	int a = Integer.parseInt(st.nextToken());
-        	int b = Integer.parseInt(st.nextToken());
-        	
-        	System.out.println(a + b);
-        }
-	}
+  public static void main(String[] agrs) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String str = br.readLine();
+    StringBuilder sb = new StringBuilder();
+    for (int i = 0; i < str.length(); i++) {
+      char c = str.charAt(i);
+      switch (c) {
+        case '0' : sb.append("000"); break;
+        case '1' : sb.append("001"); break;
+        case '2' : sb.append("010"); break;
+        case '3' : sb.append("011"); break;
+        case '4' : sb.append("100"); break;
+        case '5' : sb.append("101"); break;
+        case '6' : sb.append("110"); break;
+        case '7' : sb.append("111"); break;
+      }
+    }
+    if (sb.charAt(0) == '0') sb.deleteCharAt(0);
+    if (sb.charAt(0) == '0') sb.deleteCharAt(0);
+    System.out.println(sb);
+  }
 }
