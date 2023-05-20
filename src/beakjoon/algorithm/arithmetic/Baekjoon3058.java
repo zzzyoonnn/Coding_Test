@@ -27,7 +27,6 @@ ex 1)
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Baekjoon3058 {
@@ -38,20 +37,16 @@ public class Baekjoon3058 {
     for (int i = 0; i < n; i++) {
       int [] arr = new int[7];
       int sum = 0;
-      int min = 0;
+      int min = 100;
       StringTokenizer st = new StringTokenizer(br.readLine());
       for (int j = 0; j < 7; j++) {
         arr[j] = Integer.parseInt(st.nextToken());
         if (arr[j] % 2 == 0) {
           sum += arr[j];
-        }
-        Arrays.sort(arr);
-        for (int k = 0; k < 7; k++) {
-          System.out.print(arr[k]);
-          if (arr[k] % 2 == 0) min = arr[k];
+          if (arr[j] < min) min = arr[j];
         }
       }
-      System.out.printf("%d %d", sum, min);
+      System.out.println(sum + " " + min);
     }
   }
 }
