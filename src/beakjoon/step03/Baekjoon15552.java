@@ -1,4 +1,4 @@
-package beakjoon.step3;
+package beakjoon.step03;
 /*
 문제
 - 본격적으로 for문 문제를 풀기 전에 주의해야 할 점이 있다. 

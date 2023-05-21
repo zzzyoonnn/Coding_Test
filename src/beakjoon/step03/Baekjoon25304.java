@@ -1,4 +1,4 @@
-package beakjoon.step3;
+package beakjoon.step03;
 /*
 문제
 - 준원이는 저번 주에 살면서 처음으로 코스트코를 가 봤다. 정말 멋졌다.

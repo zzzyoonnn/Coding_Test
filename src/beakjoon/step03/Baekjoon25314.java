@@ -1,4 +1,4 @@
-package beakjoon.step3;
+package beakjoon.step03;
 /*
 문제
 - 오늘은 혜아의 면접 날이다.
