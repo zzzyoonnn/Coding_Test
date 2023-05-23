@@ -21,7 +21,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class Baekjoon1000 {
+public class Baekjoon2748 {
 
   static long[] arr;
 
