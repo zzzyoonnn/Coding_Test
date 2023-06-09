@@ -54,10 +54,13 @@ public class Baekjoon11399 {
 
     Arrays.sort(arr);
 
-    int sum = 0;
+    int sum1 = 0;
+    int sum2 = 0;
+
     for (int i = 0; i < n; i++) {
-      sum += arr[i];
+      sum1 += arr[i];
+      sum2 = sum1 + sum2;
     }
-    System.out.println(sum);
+    System.out.println(sum2);
   }
 }
