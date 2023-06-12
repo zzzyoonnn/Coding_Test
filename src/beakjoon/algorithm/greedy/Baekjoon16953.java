@@ -55,6 +55,7 @@ public class Baekjoon16953 {
       }
       cnt++;
     }
+
     System.out.println(cnt);
 
   }
