@@ -34,5 +34,18 @@ public class Baekjoon1924 {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     StringTokenizer st = new StringTokenizer(br.readLine());
 
+    int n = Integer.parseInt(st.nextToken());
+    int m = Integer.parseInt(st.nextToken());
+
+    int [] month = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    String[] days = {"SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"};
+
+    int sum = 0;
+
+    for (int i = 0; i < n - 1; i++) {
+      sum += month[i];
+    }
+    sum += m;
+    System.out.println(days[sum % 7]);
   }
 }
