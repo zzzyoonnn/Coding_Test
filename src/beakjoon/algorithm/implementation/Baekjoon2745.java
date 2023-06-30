@@ -1,4 +1,4 @@
-package beakjoon.algorithm.stack;
+package beakjoon.algorithm.implementation;
 /*
 문제
 - 어떤 사람의 C언어 성적이 주어졌을 때, 평점은 몇 점인지 출력하는 프로그램을 작성하시오.
