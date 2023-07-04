@@ -16,7 +16,6 @@ ex 1)
 입력		출력
 - A0        - 4.0
  */
-import java.io.IOException;
 import java.util.Scanner;
 
 public class Baekjoon2745 {
