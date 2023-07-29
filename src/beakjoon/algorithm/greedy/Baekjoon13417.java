@@ -40,28 +40,37 @@ ex 1)
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Baekjoon13417 {
+
+  //static int n; // 테스트 케이스의 개수
+  //static int m; // 카드의 개수
+  //static String result; // 결과 문자열
+  //static char word; // 현재 조합중인 카드
+
   public static void main(String[] args) throws IOException {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    StringTokenizer st;
-    int n = Integer.parseInt(br.readLine());
+    int n = Integer.parseInt(br.readLine());  // 테스트 케이스의 개수
 
     for (int i = 0; i < n; i++) {
-      int m = Integer.parseInt(br.readLine());
-      st = new StringTokenizer(br.readLine());
-      String[] arr = new String[m];
-      for (int j = 0; j < m; j++) {
-        arr[j] = st.nextToken();
-      }
-      Arrays.sort(arr);
+      int m = Integer.parseInt(br.readLine());  // 카드의 개수
+      StringTokenizer st = new StringTokenizer(br.readLine());
 
-      for (String s : arr) {
-        System.out.print(s);
+      char word = st.nextToken().charAt(0);  // 현재 조합중인 카드, 첫 번째 카드를 word 변수에 저장
+      String result = Character.toString(word);  // 결과 문자열, 첫 번째 카드를 결과 문자열에 저장
+
+      char new_word;
+      for (int j = 1; j < m; j++) { // 두 번째 카드부터 마지막 카드까지 반복
+        new_word = st.nextToken().charAt(0);    // 새로운 카드를 new_word 변수에 저장
+        if (word >= new_word) { // 현재 조합 중인 카드보다 새로운 카드가 작거나 같으면
+          word = new_word;  // 새로운 카드를 현재 조합 중인 카드로 설정
+          result = Character.toString(new_word) + result;   // 새로운 카드를 결과 문자열의 맨 앞에 추가
+        } else {
+          result = result + Character.toString(new_word);   // 새로운 카드를 결과 문자열의 맨 뒤에 추가
+        }
       }
-      System.out.println();
+      System.out.println(result);
     }
   }
 }
