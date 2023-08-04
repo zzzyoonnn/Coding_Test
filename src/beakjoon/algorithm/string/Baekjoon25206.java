@@ -79,33 +79,34 @@ public class Baekjoon25206 {
 
     float totalCredit = 0;
     float creditScore = 0;
-    float each = 0;
 
     for (int i = 0; i < 20; i++) {
       StringTokenizer st = new StringTokenizer(br.readLine());
-      float credit = 0;
-      float score = 0;
+      float credit = 0; // 학점
+      double score = 0;  // 평점
       String s = st.nextToken();
       credit = Float.parseFloat(st.nextToken());
-      totalCredit += credit;
-      String grade = st.nextToken();
+      String grade = st.nextToken();    // 성적
 
-      if (grade.equals("A+")) score += 4.5;
-      else if (grade.equals("A0")) score += 4.0;
-      else if (grade.equals("B+")) score += 3.5;
-      else if (grade.equals("B0")) score += 3.0;
-      else if (grade.equals("C+")) score += 2.5;
-      else if (grade.equals("C0")) score += 2.0;
-      else if (grade.equals("D+")) score += 1.5;
-      else if (grade.equals("D0")) score += 1.0;
-      else if (grade.equals("F")) score += 0.0;
-      else score += 0;
-      creditScore = credit * score;
-      each += creditScore;
-      System.out.println(each);
-      System.out.println(totalCredit);
-      System.out.println("===================");
+      if (grade.equals("A+")) score = 4.5;
+      else if (grade.equals("A0")) score = 4.0;
+      else if (grade.equals("B+")) score = 3.5;
+      else if (grade.equals("B0")) score = 3.0;
+      else if (grade.equals("C+")) score = 2.5;
+      else if (grade.equals("C0")) score = 2.0;
+      else if (grade.equals("D+")) score = 1.5;
+      else if (grade.equals("D0")) score = 1.0;
+      else if (grade.equals("F")) score = 0.0;
+      else {
+        score = 0;
+        credit = 0;
+      }
+
+      totalCredit += credit;
+      creditScore += credit * score;
     }
-    System.out.println(each / totalCredit);
+
+    float average = creditScore / totalCredit;
+    System.out.printf("%.6f\n", average);
   }
 }
