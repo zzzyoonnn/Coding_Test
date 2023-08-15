@@ -28,6 +28,8 @@ ex 1)
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.StringTokenizer;
 
 public class Baekjoon5800 {
@@ -36,20 +38,28 @@ public class Baekjoon5800 {
     int n = Integer.parseInt(br.readLine());
 
     for (int i = 0; i < n; i++) {
-      int max = 0;
-      int min = 100;
-      StringTokenizer st = new StringTokenizer(br.readLine());
-      int m = Integer.parseInt(st.nextToken());
+      int max = Integer.MIN_VALUE;
+      int min = Integer.MAX_VALUE;
 
-      while (st.hasMoreTokens()) {
-        int t = Integer.parseInt(st.nextToken());
-        if (t >= max) max = t;
-        if (t <= min) min = t;
+      StringTokenizer st = new StringTokenizer(br.readLine());
+      int student = Integer.parseInt(st.nextToken());
+      Integer[] arr = new Integer[student];     // 배열을 내림차순으로 정렬하기 위해 배열을 Integer 객체 배열로 변환
+
+      for (int j = 0; j < student; j++) {
+        arr[j] = Integer.parseInt(st.nextToken());
+        if (arr[j] > max) max = arr[j];
+        if (arr[j] < min) min = arr[j];
+      }
+
+      Arrays.sort(arr, Collections.reverseOrder());
+
+      int gap = 0;
+      for (int k = 1; k < student; k++) {
+        if (arr[k - 1] - arr[k] > gap) gap = arr[k - 1] - arr[k];
       }
 
       System.out.println("Class " + (i + 1));
-      System.out.println("Max " + max + ", Min " + min + ", Largest gap " + (max - min));
-
+      System.out.println("Max " + max + ", Min " + min + ", Largest gap " + gap);
 
     }
   }
