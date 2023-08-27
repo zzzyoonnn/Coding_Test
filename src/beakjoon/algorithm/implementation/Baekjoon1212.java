@@ -12,6 +12,8 @@ ex 1)
 입력      출력
 - 314     - 11001100
  */
+
+// 수의 길이가 333,334를 넘지 않으므로 Integer형 사용 불가능
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -19,10 +21,9 @@ import java.io.InputStreamReader;
 public class Baekjoon1212 {
   public static void main(String[] agrs) throws IOException {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    String s = br.readLine();
 
-    int n = Integer.parseInt(s, 8); // 8진수 -> 10진수로 변환
+    int n = Integer.parseInt(br.readLine(), 8); // 8진수 -> 10진수로 변환
 
-    System.out.println(Integer.toString(n, 2));
+    System.out.println(Integer.toBinaryString(n));
   }
 }
