@@ -37,26 +37,25 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
+import java.util.Collections;
 
 public class Baekjoon11508 {
   public static void main(String[] agrs) throws IOException {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     int n = Integer.parseInt(br.readLine());
-    int[] arr = new int[3];
-    int sum = 0;
+    Integer[] arr = new Integer[n];
 
     for (int i = 0; i < n; i++) {
-      for (int k = 0; k < 3; k++) {
-        arr[k] = Integer.parseInt(br.readLine());
-      }
-      Arrays.sort(arr);
-      sum += (arr[0] + arr[1]);
+      arr[i] = Integer.parseInt(br.readLine());
+    }
 
-      for (int j = 0; j <= n % 3; j++) {
-        sum += Integer.parseInt(br.readLine());
-      }
+    Arrays.sort(arr, Collections.reverseOrder());
+
+    int sum = 0;
+    for (int i = 0; i < n; i++) {
+      if (i % 3 != 2) 
+        sum += arr[i];
     }
     System.out.println(sum);
-
   }
 }
