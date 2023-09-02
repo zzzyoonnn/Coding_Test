@@ -1,4 +1,4 @@
-package beakjoon.BruteForce;
+package beakjoon.Type.BruteForce;
 /*
 문제
 - 카지노에서 제일 인기 있는 게임 블랙잭의 규칙은 상당히 쉽다. 

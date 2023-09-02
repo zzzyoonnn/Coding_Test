@@ -1,4 +1,4 @@
-package beakjoon.step01;
+package beakjoon.Step.step01;
 /*
 문제
 - ICPC Bangkok Regional에 참가하기 위해
@@ -15,20 +15,22 @@ package beakjoon.step01;
 ex 1)
 입력			출력
 - 2541			- 1998
-*/
-import java.io.*;
-import java.util.*;
+ */
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class Baekjoon18108 {
-	public static void main(String[] args) throws IOException {
-        int a;
-        
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String str = br.readLine();
-        StringTokenizer st = new StringTokenizer(str);
-        
-        a = Integer.parseInt(st.nextToken());
-        
-        System.out.printf("%d", a - 544);
-    }
+  public static void main(String[] args) throws IOException {
+    int a;
+
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String str = br.readLine();
+    StringTokenizer st = new StringTokenizer(str);
+
+    a = Integer.parseInt(st.nextToken());
+
+    System.out.printf("%d", a - 544);
+  }
 }

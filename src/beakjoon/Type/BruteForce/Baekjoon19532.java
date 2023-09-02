@@ -1,4 +1,4 @@
-package beakjoon.BruteForce;
+package beakjoon.Type.BruteForce;
 /*
 문제
 - 수현이는 4차 산업혁명 시대에 살고 있는 중학생이다. 

@@ -1,4 +1,4 @@
-package beakjoon.step01;
+package beakjoon.Step.step01;
 /*
 문제
 - 준하는 사이트에 회원가입을 하다가 joonas라는 아이디가 이미 존재하는 것을 보고 놀랐다.
@@ -16,17 +16,18 @@ ex 1)
 ex 2)
 입력			출력
 - baekjoon		- baekjoon??!
-*/
-import java.io.*;
-import java.util.*;
+ */
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Baekjoon10926 {
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        
-        String lastString = "??!";
-        
-        String s = br.readLine();
-        System.out.println(s + lastString);
-    }
+  public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+    String lastString = "??!";
+
+    String s = br.readLine();
+    System.out.println(s + lastString);
+  }
 }

@@ -1,4 +1,4 @@
-package beakjoon.step01;
+package beakjoon.Step.step01;
 /*
 문제
 - Hello World!를 출력하시오.
@@ -9,9 +9,9 @@ package beakjoon.step01;
 ex 1)
 입력          출력
 -             - Hello World!
-*/
+ */
 public class Beakjoon2557 {
-    public static void main(String[] args) {
-        System.out.println("Hello World!");
-    }
+  public static void main(String[] args) {
+    System.out.println("Hello World!");
+  }
 }
