@@ -62,9 +62,9 @@ public class Baekjoon15721 {
         // 뻔이 나온 횟수와 데기가 나온 횟수는
         // 더한 값에 -1을 해준 전체 인원수로 나눈 값을 return
         if (bbun == t && k == 0)
-          return (bbun + degi - 1) % a;
+          return (bbun + degi - 1) % a;     // 순환구조로 구현하기 위해 % a
         if (degi == t && k == 1)
-          return (bbun + degi - 1) % a;
+          return (bbun + degi - 1) % a;     // 순환구조로 구현하기 위해 % a
       }
 
       // 이후 count만큼 반복되는 (뻔 * n) - (데기 * n) count 
