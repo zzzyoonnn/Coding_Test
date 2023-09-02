@@ -1,4 +1,4 @@
-package beakjoon.step4;
+package beakjoon.Step.step4;
 /*
 문제
 - 도현이는 바구니를 총 N개 가지고 있고,
@@ -23,41 +23,43 @@ ex 1)
   3 4
   1 4
   2 2
-*/
-import java.io.*;
-import java.util.*;
+ */
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class Baekjoon10813 {
-	public static void main(String[] args) throws IOException {
-		// BufferedReader를 이용하여 값 입력받기
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        int n = Integer.parseInt(st.nextToken());	// 바구니 n개
-        int m = Integer.parseInt(st.nextToken());	// m번 바꾸기
-        
-        int[] arr = new int[n];
-        
-        for (int i = 0; i < n; i++) {
-        	arr[i] = i + 1;
-        }
-        
-        for (int j = 0; j < m; j++) {
-        	int tmp;
-        	st = new StringTokenizer(br.readLine());
-        	int x = Integer.parseInt(st.nextToken());	// i번 바구니와
-        	int y = Integer.parseInt(st.nextToken());	// j번 바구니 공 교환
-        	
-        	// 공 위치 바꾸기
-        	// 바구니 번호와 arr의 index 번호를 일치하기 위해 -1 하기
-        	tmp = arr[x - 1];
-        	arr[x - 1] = arr[y - 1];
-        	arr[y - 1] = tmp;
-        }
-        br.close();
-        
-        for (int index : arr) {
-        	System.out.print(index + " ");
-        }
+  public static void main(String[] args) throws IOException {
+    // BufferedReader를 이용하여 값 입력받기
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+    StringTokenizer st = new StringTokenizer(br.readLine());
+    int n = Integer.parseInt(st.nextToken());	// 바구니 n개
+    int m = Integer.parseInt(st.nextToken());	// m번 바꾸기
+
+    int[] arr = new int[n];
+
+    for (int i = 0; i < n; i++) {
+      arr[i] = i + 1;
     }
+
+    for (int j = 0; j < m; j++) {
+      int tmp;
+      st = new StringTokenizer(br.readLine());
+      int x = Integer.parseInt(st.nextToken());	// i번 바구니와
+      int y = Integer.parseInt(st.nextToken());	// j번 바구니 공 교환
+
+      // 공 위치 바꾸기
+      // 바구니 번호와 arr의 index 번호를 일치하기 위해 -1 하기
+      tmp = arr[x - 1];
+      arr[x - 1] = arr[y - 1];
+      arr[y - 1] = tmp;
+    }
+    br.close();
+
+    for (int index : arr) {
+      System.out.print(index + " ");
+    }
+  }
 }

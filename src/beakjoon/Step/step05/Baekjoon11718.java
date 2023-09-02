@@ -1,4 +1,4 @@
-package beakjoon.step05;
+package beakjoon.Step.step05;
 /*
 문제
 - 입력 받은 대로 출력하는 프로그램을 작성하시오.
@@ -15,17 +15,18 @@ ex 1)
 - Hello				- Hello
   Baekjoon			  Baekjoon
   Online Judge		  Online Judge
-*/
-import java.io.*;
-import java.util.*;
+ */
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Baekjoon11718 {
-	public static void main(String[] args) throws IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		String str;
-		
-		while ((str = br.readLine()) != null) {
-			System.out.println(str);
-		}
+  public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String str;
+
+    while ((str = br.readLine()) != null) {
+      System.out.println(str);
     }
+  }
 }

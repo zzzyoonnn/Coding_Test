@@ -1,4 +1,4 @@
-package beakjoon.step12;
+package beakjoon.Step.step12;
 /*
 문제
 - 어떤 수들이 있을 때, 그 수들을 대표하는 값으로 가장 흔하게 쓰이는 것은 평균이다. 
@@ -22,34 +22,33 @@ ex 1)
   30
   60
   30		  
-*/
+ */
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
-import java.util.StringTokenizer;
 
 public class Baekjoon2587 {
-	
-	public static void main(String[] agrs) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int [] arr = new int[5];
-        int sum = 0;
-        
-        for(int i = 0; i < 5; i++) {
-        	int n = Integer.parseInt(br.readLine());
-        	arr[i] = n;
-        	sum += n;
-        }
-        
-        System.out.println(sum / 5);	// 평균 출력
-        
-        Arrays.sort(arr);
-        // Arrys.sort()
-        // 자바에서 기본으로 제공되는 메소드
-        // 자체 정렬 알고리즘을 구현할 필요 없이 sort() 안에 배열을 넣어주면
-        // 자동으로 배열이 정렬되어 나옴
-        
-        System.out.println(arr[2]);	// 크기가 5인 배열의 중앙값을 구하기 위해 세번째 값 출력
-	}
+
+  public static void main(String[] agrs) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    int [] arr = new int[5];
+    int sum = 0;
+
+    for(int i = 0; i < 5; i++) {
+      int n = Integer.parseInt(br.readLine());
+      arr[i] = n;
+      sum += n;
+    }
+
+    System.out.println(sum / 5);	// 평균 출력
+
+    Arrays.sort(arr);
+    // Arrys.sort()
+    // 자바에서 기본으로 제공되는 메소드
+    // 자체 정렬 알고리즘을 구현할 필요 없이 sort() 안에 배열을 넣어주면
+    // 자동으로 배열이 정렬되어 나옴
+
+    System.out.println(arr[2]);	// 크기가 5인 배열의 중앙값을 구하기 위해 세번째 값 출력
+  }
 }

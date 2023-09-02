@@ -1,4 +1,4 @@
-package beakjoon.step05;
+package beakjoon.Step.step05;
 import java.io.BufferedReader;
 /*
 문제

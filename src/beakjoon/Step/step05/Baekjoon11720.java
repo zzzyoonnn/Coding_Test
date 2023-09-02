@@ -1,4 +1,4 @@
-package beakjoon.step05;
+package beakjoon.Step.step05;
 /*
 문제
 - N개의 숫자가 공백 없이 쓰여있다. 

@@ -1,4 +1,4 @@
-package beakjoon.step2;
+package beakjoon.Step.step2;
 /*
 문제
 - 두 정수 A와 B가 주어졌을 때, A와 B를 비교하는 프로그램을 작성하시오.
@@ -20,26 +20,28 @@ ex 2)
 ex )
 입력			출력
 - 5 5			- ==
-*/
-import java.io.*;
-import java.util.*;
+ */
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class Baekjoon1330 {
-	public static void main(String[] args) throws IOException {
-        int a, b;
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String str = br.readLine();
-        StringTokenizer st = new StringTokenizer(str);
-        
-        a = Integer.parseInt(st.nextToken());
-        b = Integer.parseInt(st.nextToken());
-        
-        if (a > b) {
-            System.out.println(">");
-        } else if (a < b) {
-            System.out.println("<");
-        } else {
-            System.out.println("==");
-        }
+  public static void main(String[] args) throws IOException {
+    int a, b;
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String str = br.readLine();
+    StringTokenizer st = new StringTokenizer(str);
+
+    a = Integer.parseInt(st.nextToken());
+    b = Integer.parseInt(st.nextToken());
+
+    if (a > b) {
+      System.out.println(">");
+    } else if (a < b) {
+      System.out.println("<");
+    } else {
+      System.out.println("==");
     }
+  }
 }

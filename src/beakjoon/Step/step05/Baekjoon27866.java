@@ -1,4 +1,4 @@
-package beakjoon.step05;
+package beakjoon.Step.step05;
 /*
 문제
 - 단어 S와 정수 i가 주어졌을 때, 

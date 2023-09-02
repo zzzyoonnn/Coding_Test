@@ -1,4 +1,4 @@
-package beakjoon.step03;
+package beakjoon.Step.step03;
 /*
 문제
 - 두 정수 A와 B를 입력받은 다음, A+B를 출력하는 프로그램을 작성하시오.
@@ -17,39 +17,43 @@ ex 1)
   3 4			  Case #4: 9 + 8 = 17
   9 8			  Case #5: 5 + 2 = 7
   5 2
-*/        
-import java.io.*;
-import java.util.*;
+ */
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.util.StringTokenizer;
 
 public class Baekjoon11022 {
-	// BufferedReader를 사용할 경우 예외처리 즉, throws IOException을 해야 함
-	public static void main(String[] args) throws IOException {
-		// BufferedReader를 이용하여 값 입력받기
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        
-        // print 관련 메서드를 사용하기 위해 BufferedReader 대신 PrintWriter를 사용
-        // BufferedOutputStream은 BufferedWriter와 비슷한 역할(출력 내용을 버퍼링, 버터가 찰 때마다 출력으로 내보냄)
-        PrintWriter pw = new PrintWriter(new BufferedOutputStream(System.out));
-        
-        // 테스트 케이스 갯수
-        // readLine() : 입력 값으로 들어온 데이터를 한 줄로 읽어서 String으로 바꾸는 메소드
-        //				무조건 한줄만 읽음
-        //	Enter키 사용 시 입력 종료
-        int n = Integer.parseInt(br.readLine());
-        
-        for (int i = 0; i < n; i++) {
-        	// 띄어쓰기를 기준으로 입력받은 값들을 분리하고 Enter키 사용 시 입력 종료
-        	StringTokenizer st = new StringTokenizer(br.readLine());
-        	// StringTokenizer로 분리된 토큰들을 하나씩 읽으면서 a, b에 입력
-        	// String으로 읽었으니 Integer로 바꾸기 위해 parseInt 수행
-        	int a = Integer.parseInt(st.nextToken());
-        	int b = Integer.parseInt(st.nextToken());
-        	pw.printf("Case #%d: %d + %d = %d\n", i + 1, a, b, a + b);
-        }
-        // BufferedReader를 다 사용했으니, close()를 통해 InputStream을 닫고 자원 해제
-        br.close();
-        
-        pw.flush();
-        pw.close();
-	}
+  // BufferedReader를 사용할 경우 예외처리 즉, throws IOException을 해야 함
+  public static void main(String[] args) throws IOException {
+    // BufferedReader를 이용하여 값 입력받기
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+    // print 관련 메서드를 사용하기 위해 BufferedReader 대신 PrintWriter를 사용
+    // BufferedOutputStream은 BufferedWriter와 비슷한 역할(출력 내용을 버퍼링, 버터가 찰 때마다 출력으로 내보냄)
+    PrintWriter pw = new PrintWriter(new BufferedOutputStream(System.out));
+
+    // 테스트 케이스 갯수
+    // readLine() : 입력 값으로 들어온 데이터를 한 줄로 읽어서 String으로 바꾸는 메소드
+    //				무조건 한줄만 읽음
+    //	Enter키 사용 시 입력 종료
+    int n = Integer.parseInt(br.readLine());
+
+    for (int i = 0; i < n; i++) {
+      // 띄어쓰기를 기준으로 입력받은 값들을 분리하고 Enter키 사용 시 입력 종료
+      StringTokenizer st = new StringTokenizer(br.readLine());
+      // StringTokenizer로 분리된 토큰들을 하나씩 읽으면서 a, b에 입력
+      // String으로 읽었으니 Integer로 바꾸기 위해 parseInt 수행
+      int a = Integer.parseInt(st.nextToken());
+      int b = Integer.parseInt(st.nextToken());
+      pw.printf("Case #%d: %d + %d = %d\n", i + 1, a, b, a + b);
+    }
+    // BufferedReader를 다 사용했으니, close()를 통해 InputStream을 닫고 자원 해제
+    br.close();
+
+    pw.flush();
+    pw.close();
+  }
 }

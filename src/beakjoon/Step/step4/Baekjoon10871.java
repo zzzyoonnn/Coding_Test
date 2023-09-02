@@ -1,4 +1,4 @@
-package beakjoon.step4;
+package beakjoon.Step.step4;
 /*
 문제
 - 정수 N개로 이루어진 수열 A와 정수 X가 주어진다.
@@ -14,35 +14,37 @@ ex 1)
 입력						출력
 - 10 5						- 1 4 2 3
   1 10 4 9 2 3 8 5 7 6
-*/
-import java.io.*;
-import java.util.*;
+ */
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class Baekjoon10871 {
-	public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        
-        // 수열의 갯수
-        int n = Integer.parseInt(st.nextToken());
-        // 구할 작은수의 기준
-        int criteria = Integer.parseInt(st.nextToken());
-        
-        
-        // 수열
-        // StringBuilder는 String과 문자열을 더할 때 새로운 객체를 생성하는 것이 아니라
-        // 기존의 데이터에 더하는 방식
-        StringBuilder sb = new StringBuilder();
-        st = new StringTokenizer(br.readLine());
-        
-        for (int i = 0; i < n; i++) {
-        	int element = Integer.parseInt(st.nextToken());
-        	
-        	if (element < criteria) {
-        		// append를 사용하여 문자열 더함
-        		sb.append(element).append(' ');
-        	}
-        }
-        System.out.println(sb);
+  public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    StringTokenizer st = new StringTokenizer(br.readLine());
+
+    // 수열의 갯수
+    int n = Integer.parseInt(st.nextToken());
+    // 구할 작은수의 기준
+    int criteria = Integer.parseInt(st.nextToken());
+
+
+    // 수열
+    // StringBuilder는 String과 문자열을 더할 때 새로운 객체를 생성하는 것이 아니라
+    // 기존의 데이터에 더하는 방식
+    StringBuilder sb = new StringBuilder();
+    st = new StringTokenizer(br.readLine());
+
+    for (int i = 0; i < n; i++) {
+      int element = Integer.parseInt(st.nextToken());
+
+      if (element < criteria) {
+        // append를 사용하여 문자열 더함
+        sb.append(element).append(' ');
+      }
     }
+    System.out.println(sb);
+  }
 }

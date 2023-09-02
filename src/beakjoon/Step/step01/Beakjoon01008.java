@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class Beakjoon1008 {
+public class Beakjoon01008 {
   public static void main(String[] args) throws IOException {
     double a, b;
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));

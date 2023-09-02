@@ -1,4 +1,4 @@
-package beakjoon.step03;
+package beakjoon.Step.step03;
 /*
 문제
 - 오늘은 혜아의 면접 날이다.
@@ -31,20 +31,21 @@ ex 1)
 ex 2)
 입력		출력
 - 20		- long long long long long int
-*/
-import java.io.*;
-import java.util.*;
+ */
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Baekjoon25314 {
-	public static void main(String[] args) throws IOException {
-        int a;
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        
-        a = Integer.parseInt(br.readLine());
-        
-        for (int i = 1; i <= a/4; i++) {
-        	System.out.print("long ");
-        }
-        System.out.println("int");
+  public static void main(String[] args) throws IOException {
+    int a;
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+    a = Integer.parseInt(br.readLine());
+
+    for (int i = 1; i <= a/4; i++) {
+      System.out.print("long ");
     }
+    System.out.println("int");
+  }
 }

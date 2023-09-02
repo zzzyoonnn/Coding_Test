@@ -1,4 +1,4 @@
-package beakjoon.step03;
+package beakjoon.Step.step03;
 /*
 문제
 - 첫째 줄에는 별 1개, 둘째 줄에는 별 2개, N번째 줄에는 별 N개를 찍는 문제
@@ -12,30 +12,31 @@ ex 1)
 - 5
 출력
 -     *
-     **
-    ***
-   ****
-  *****
-*/
-import java.io.*;
-import java.util.*;
+ **
+ ***
+ ****
+ *****
+ */
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Baekjoon2439 {
-	public static void main(String[] args) throws IOException {
-        int a;
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        
-        a = Integer.parseInt(br.readLine());
-        
-        for
-         (int x = 1; x <= a; x++) {
-        	for (int y = 1; y <= a - x; y++) {
-        		System.out.printf(" ");
-        	}
-        	for (int z = 1; z <= x; z++) {
-        		System.out.printf("*");
-        	}
-        	System.out.println();
-        }
+  public static void main(String[] args) throws IOException {
+    int a;
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+    a = Integer.parseInt(br.readLine());
+
+    for
+    (int x = 1; x <= a; x++) {
+      for (int y = 1; y <= a - x; y++) {
+        System.out.printf(" ");
+      }
+      for (int z = 1; z <= x; z++) {
+        System.out.printf("*");
+      }
+      System.out.println();
     }
+  }
 }

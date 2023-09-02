@@ -1,4 +1,4 @@
-package beakjoon.step05;
+package beakjoon.Step.step05;
 /*
 문제
 - 알파벳 소문자, 대문자, 숫자 0-9중 하나가 주어졌을 때,
@@ -25,15 +25,14 @@ ex 2)
 ex 3)
 입력			출력
 - z				- 122
-*/
-import java.io.*;
-import java.util.*;
+ */
+import java.io.IOException;
 
 public class Baekjoon11654 {
-	public static void main(String[] args) throws IOException {
-		// System.in : byte 값으로 문자 한개만 읽으면서
-		// 해당 문자에 대응하는 아스키코드 값 저장
-		int a = System.in.read();
-		System.out.println(a);
-    }
+  public static void main(String[] args) throws IOException {
+    // System.in : byte 값으로 문자 한개만 읽으면서
+    // 해당 문자에 대응하는 아스키코드 값 저장
+    int a = System.in.read();
+    System.out.println(a);
+  }
 }

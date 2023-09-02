@@ -1,4 +1,4 @@
-package beakjoon.step2;
+package beakjoon.Step.step2;
 /*
 문제
 - 흔한 수학 문제 중 하나는 주어진 점이 어느 사분면에 속하는지 알아내는 것이다.
@@ -26,26 +26,27 @@ ex 2)
   -13
 출력
 - 4
-*/
-import java.io.*;
-import java.util.*;
+ */
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Baekjoon14681 {
-	public static void main(String[] args) throws IOException {
-        int a, b;
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        
-        a = Integer.parseInt(br.readLine());
-        b = Integer.parseInt(br.readLine());
-        
-        if (a > 0 && b > 0) {
-            System.out.println("1");
-        } else if (a > 0 && b < 0) {
-            System.out.println("4");
-        } else if (a < 0 && b > 0) {
-            System.out.println("2");
-        } else {
-            System.out.println("3");
-        }
+  public static void main(String[] args) throws IOException {
+    int a, b;
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+    a = Integer.parseInt(br.readLine());
+    b = Integer.parseInt(br.readLine());
+
+    if (a > 0 && b > 0) {
+      System.out.println("1");
+    } else if (a > 0 && b < 0) {
+      System.out.println("4");
+    } else if (a < 0 && b > 0) {
+      System.out.println("2");
+    } else {
+      System.out.println("3");
     }
+  }
 }

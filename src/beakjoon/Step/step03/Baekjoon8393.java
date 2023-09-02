@@ -1,4 +1,4 @@
-package beakjoon.step03;
+package beakjoon.Step.step03;
 /*
 문제
 - n이 주어졌을 때, 1부터 n까지 합을 구하는 프로그램을 작성하시오.
@@ -11,21 +11,22 @@ ex 1)
 - 3
 출력
 - 6
-*/
-import java.io.*;
-import java.util.*;
+ */
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Baekjoon8393 {
-	public static void main(String[] args) throws IOException {
-        int a;
-        int sum = 0;
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        
-        a = Integer.parseInt(br.readLine());
-        
-        for(int i = 1; i < a + 1; i++) {
-        	sum += i;
-        }
-        System.out.println(sum);
+  public static void main(String[] args) throws IOException {
+    int a;
+    int sum = 0;
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+    a = Integer.parseInt(br.readLine());
+
+    for(int i = 1; i < a + 1; i++) {
+      sum += i;
     }
+    System.out.println(sum);
+  }
 }

@@ -1,4 +1,4 @@
-package beakjoon.step13;
+package beakjoon.Step.step13;
 /*
 문제
 - 정수 B에 0보다 큰 정수인 N을 곱해 정수 A를 만들 수 있다면, A는 B의 배수이다.
@@ -32,36 +32,36 @@ ex 1)
 ex 1)
 입력		출력
 - 121 199	- 24079
-*/
+ */
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class Baekjoon1934 {
-	
-	public static void main(String[] agrs) throws IOException {
-		// 입력받은 문자열을 Integer 데이터타입으로 변환(기본형 String)
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        // 공백 기준으로 토큰화(한번에 입력받음)
-    	StringTokenizer st = new StringTokenizer(br.readLine());
-        
-        long a = Long.parseLong(st.nextToken());
-        long b = Long.parseLong(st.nextToken());
-        
-        System.out.println(lcm(a, b));
-    }
-	
-	// 최대공약수 GCD(Greatest Common Divisor)
-	public static long gcd(long a, long b) {
-		if (a % b == 0) return b;	
-		// 최대공약수는 두 개의 a, b에 대해서 b와 a % b의 값이 최대공약수와 같으므로 리턴값으로 재귀 사용
-		return gcd(b, a % b);
-	}
-	
-	// 최소공배수 LCM(Least Common Multiple)
-	public static long lcm(long x, long y) {
-		return x * y / gcd(x, y);
-	}
+
+  public static void main(String[] agrs) throws IOException {
+    // 입력받은 문자열을 Integer 데이터타입으로 변환(기본형 String)
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    // 공백 기준으로 토큰화(한번에 입력받음)
+    StringTokenizer st = new StringTokenizer(br.readLine());
+
+    long a = Long.parseLong(st.nextToken());
+    long b = Long.parseLong(st.nextToken());
+
+    System.out.println(lcm(a, b));
+  }
+
+  // 최대공약수 GCD(Greatest Common Divisor)
+  public static long gcd(long a, long b) {
+    if (a % b == 0) return b;	
+    // 최대공약수는 두 개의 a, b에 대해서 b와 a % b의 값이 최대공약수와 같으므로 리턴값으로 재귀 사용
+    return gcd(b, a % b);
+  }
+
+  // 최소공배수 LCM(Least Common Multiple)
+  public static long lcm(long x, long y) {
+    return x * y / gcd(x, y);
+  }
 
 }

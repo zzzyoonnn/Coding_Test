@@ -1,4 +1,4 @@
-package beakjoon.step2;
+package beakjoon.Step.step2;
 /*
 문제
 - KOI 전자에서는 건강에 좋고 맛있는 훈제오리구이 요리를
@@ -32,35 +32,37 @@ ex 3)
 입력			출력
 - 23 48			- 0 13
   25
-*/
-import java.io.*;
-import java.util.*;
+ */
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class Baekjoon2525 {
-	public static void main(String[] args) throws IOException {
-		int hour, minute;	// 현재 시각
-		int cooking;	// 요리하는데 필요한 시간
-		int time;	// 총 시간을 분으로 변환한 값을 저장할 변수
-		int result_hour, result_minute;		// 오븐 구이가 끝나는 시각
-		
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String str = br.readLine();
-        StringTokenizer st = new StringTokenizer(str);
-        
-        hour = Integer.parseInt(st.nextToken());
-        minute = Integer.parseInt(st.nextToken());
-        // 줄 바꿈 후 값을 입력받을 것이므로 br.readLine()
-        cooking = Integer.parseInt(br.readLine());
-        
-        time = (hour * 60) + minute + cooking;
-        
-        result_hour = time / 60;
-        result_minute = time % 60;
-        
-        if (result_hour > 23) {
-        	result_hour = result_hour - 24;
-        }
-        
-        System.out.println(result_hour + " " + result_minute);
+  public static void main(String[] args) throws IOException {
+    int hour, minute;	// 현재 시각
+    int cooking;	// 요리하는데 필요한 시간
+    int time;	// 총 시간을 분으로 변환한 값을 저장할 변수
+    int result_hour, result_minute;		// 오븐 구이가 끝나는 시각
+
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String str = br.readLine();
+    StringTokenizer st = new StringTokenizer(str);
+
+    hour = Integer.parseInt(st.nextToken());
+    minute = Integer.parseInt(st.nextToken());
+    // 줄 바꿈 후 값을 입력받을 것이므로 br.readLine()
+    cooking = Integer.parseInt(br.readLine());
+
+    time = (hour * 60) + minute + cooking;
+
+    result_hour = time / 60;
+    result_minute = time % 60;
+
+    if (result_hour > 23) {
+      result_hour = result_hour - 24;
     }
+
+    System.out.println(result_hour + " " + result_minute);
+  }
 }

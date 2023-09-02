@@ -1,4 +1,4 @@
-package beakjoon.step4;
+package beakjoon.Step.step4;
 /*
 문제
 - 9개의 서로 다른 자연수가 주어질 때,
@@ -22,33 +22,34 @@ ex 1)
   40
   85
   61
-*/
-import java.io.*;
-import java.util.*;
+ */
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Baekjoon2562 {
-	public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        
-        // 수열
-        int[] arr = new int[9];
-        for (int index = 0; index < 9; index++) {
-        	arr[index] = Integer.parseInt(br.readLine());
-        }
-        
-        int max = 0;
-        int max_index = 0;
-        int count = 0;
-        
-        for (int value : arr) {
-        	count++;
-        	if (value > max) {
-        		max = value;
-        		max_index = count;
-        	}
-        }
-        
-        System.out.println(max);
-        System.out.println(max_index);
+  public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+    // 수열
+    int[] arr = new int[9];
+    for (int index = 0; index < 9; index++) {
+      arr[index] = Integer.parseInt(br.readLine());
     }
+
+    int max = 0;
+    int max_index = 0;
+    int count = 0;
+
+    for (int value : arr) {
+      count++;
+      if (value > max) {
+        max = value;
+        max_index = count;
+      }
+    }
+
+    System.out.println(max);
+    System.out.println(max_index);
+  }
 }

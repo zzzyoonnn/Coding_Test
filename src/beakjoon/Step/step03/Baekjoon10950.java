@@ -1,4 +1,4 @@
-package beakjoon.step03;
+package beakjoon.Step.step03;
 /*
 문제
 - 두 정수 A와 B를 입력받은 다음, A+B를 출력하는 프로그램을 작성하시오.
@@ -16,25 +16,29 @@ ex 1)
   3 4			  17
   9 8			  7
   5 2
-*/        
-import java.io.*;
-import java.util.*;
+ */
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.util.StringTokenizer;
 
 public class Baekjoon10950 {
-	public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        
-        // 테스트 케이스 갯수
-        int n = Integer.parseInt(br.readLine());
-        
-        for (int i = 0; i < n; i++) {
-        	StringTokenizer st = new StringTokenizer(br.readLine());
-        	bw.write((Integer.parseInt(st.nextToken()) + Integer.parseInt(st.nextToken())) + "\n");
-        }
-        br.close();
-        
-        bw.flush();
-        bw.close();
-	}
+  public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+
+    // 테스트 케이스 갯수
+    int n = Integer.parseInt(br.readLine());
+
+    for (int i = 0; i < n; i++) {
+      StringTokenizer st = new StringTokenizer(br.readLine());
+      bw.write((Integer.parseInt(st.nextToken()) + Integer.parseInt(st.nextToken())) + "\n");
+    }
+    br.close();
+
+    bw.flush();
+    bw.close();
+  }
 }

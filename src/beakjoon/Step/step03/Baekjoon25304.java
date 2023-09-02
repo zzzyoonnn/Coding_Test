@@ -1,10 +1,10 @@
-package beakjoon.step03;
+package beakjoon.Step.step03;
 /*
 문제
 - 준원이는 저번 주에 살면서 처음으로 코스트코를 가 봤다. 정말 멋졌다.
   그런데, 몇 개 담지도 않았는데 수상하게 높은 금액이 나오는 것이다! 
   준원이는 영수증을 보면서 정확하게 계산된 것이 맞는지 확인해보려 한다.
-  
+
   영수증에 적힌,
   구매한 각 물건의 가격과 개수
   구매한 물건들의 총 금액을 보고,
@@ -43,32 +43,34 @@ ex 2)
   30000 2
   10000 6
   5000 8
-*/        
-import java.io.*;
-import java.util.*;
+ */
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class Baekjoon25304 {
-	public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        
-        // 총 금액
-        int sum = Integer.parseInt(br.readLine());
-        // 구매한 목록의 종류 수
-        int sort = Integer.parseInt(br.readLine());
-        
-        // 영수증 물건들 가격 합
-        int price = 0;
-        
-        for (int i = 0; i < sort; i++) {
-        	StringTokenizer st = new StringTokenizer(br.readLine());
-        	price += Integer.parseInt(st.nextToken()) * Integer.parseInt(st.nextToken());
-        }
-        if (sum == price) {
-        	System.out.println("Yes");
-        } else {
-        	System.out.println("No");
-        }
-        
-        br.close();
-	}
+  public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+    // 총 금액
+    int sum = Integer.parseInt(br.readLine());
+    // 구매한 목록의 종류 수
+    int sort = Integer.parseInt(br.readLine());
+
+    // 영수증 물건들 가격 합
+    int price = 0;
+
+    for (int i = 0; i < sort; i++) {
+      StringTokenizer st = new StringTokenizer(br.readLine());
+      price += Integer.parseInt(st.nextToken()) * Integer.parseInt(st.nextToken());
+    }
+    if (sum == price) {
+      System.out.println("Yes");
+    } else {
+      System.out.println("No");
+    }
+
+    br.close();
+  }
 }

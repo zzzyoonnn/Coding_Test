@@ -1,4 +1,4 @@
-package beakjoon.step12;
+package beakjoon.Step.step12;
 /*
 문제
 - 2022 연세대학교 미래캠퍼스 슬기로운 코딩생활에 N명의 학생들이 응시했다.
@@ -17,7 +17,7 @@ ex 1)
   100 76 85 93 98
 출력
 - 98
-*/
+ */
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -26,35 +26,35 @@ import java.util.Collections;
 import java.util.StringTokenizer;
 
 public class Baekjoon25305 {
-	
-	public static void main(String[] agrs) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        // 입력받은 값을 띄어쓰기 기준으로 토큰화
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        // 띄어쓰기 기준으로 토근화된 값들을 하나씩 변수에 입력
-        int total = Integer.parseInt(st.nextToken());	// 응시자 수
-        int prize = Integer.parseInt(st.nextToken());	// 상 받는 사람 수
-        
-        // 응시자 수만큼의 배열 생성
-        Integer arr[] = new Integer[total];
-        // 값 입력받기
-        st = new StringTokenizer(br.readLine());
-        for(int i = 0; i < total; i++) {
-        	// 입력받은 값을 띄어쓰기 기준으로 토큰화
-        	// 띄어쓰기 기준으로 토근화된 값들을 하나씩 변수에 입력
-        	int n = Integer.parseInt(st.nextToken());
-        	arr[i] = n;
-        }
-        
-        Arrays.sort(arr, Collections.reverseOrder());
-        // Arrays.sort()
-        // 자바에서 기본으로 제공되는 메소드
-        // 자체 정렬 알고리즘을 구현할 필요 없이 sort() 안에 배열을 넣어주면
-        // 자동으로 배열이 정렬되어 나옴
-        // Arrays.sort(arr, Collections.reverseOrder()); 내림차순 정렬
-        // 내림차순 정렬 사용 시 
-        // 선언할 때 Integer arr[] = new Integer[n]
-        
-        System.out.println(arr[prize-1]);	// 평균 출력
-	}
+
+  public static void main(String[] agrs) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    // 입력받은 값을 띄어쓰기 기준으로 토큰화
+    StringTokenizer st = new StringTokenizer(br.readLine());
+    // 띄어쓰기 기준으로 토근화된 값들을 하나씩 변수에 입력
+    int total = Integer.parseInt(st.nextToken());	// 응시자 수
+    int prize = Integer.parseInt(st.nextToken());	// 상 받는 사람 수
+
+    // 응시자 수만큼의 배열 생성
+    Integer arr[] = new Integer[total];
+    // 값 입력받기
+    st = new StringTokenizer(br.readLine());
+    for(int i = 0; i < total; i++) {
+      // 입력받은 값을 띄어쓰기 기준으로 토큰화
+      // 띄어쓰기 기준으로 토근화된 값들을 하나씩 변수에 입력
+      int n = Integer.parseInt(st.nextToken());
+      arr[i] = n;
+    }
+
+    Arrays.sort(arr, Collections.reverseOrder());
+    // Arrays.sort()
+    // 자바에서 기본으로 제공되는 메소드
+    // 자체 정렬 알고리즘을 구현할 필요 없이 sort() 안에 배열을 넣어주면
+    // 자동으로 배열이 정렬되어 나옴
+    // Arrays.sort(arr, Collections.reverseOrder()); 내림차순 정렬
+    // 내림차순 정렬 사용 시 
+    // 선언할 때 Integer arr[] = new Integer[n]
+
+    System.out.println(arr[prize-1]);	// 평균 출력
+  }
 }
