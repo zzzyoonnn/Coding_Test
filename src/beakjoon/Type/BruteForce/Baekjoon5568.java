@@ -39,17 +39,56 @@ ex 2)
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.HashSet;
 import java.util.Set;
 
 public class Baekjoon5568 {
-  static int n;
-  static int k;
-  static int[] card;
+  static int n;     // 주어진 카드의 개수
+  static int k;     // 선택할 카드의 장수
+  static int card[];
   static boolean used[];
   static Set<Integer> setNum;   // 중복 정수의 저장을 막기 위해 Set 자료형 사용
 
   public static void main(String[] args) throws IOException {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    n = Integer.parseInt(br.readLine());
+    k = Integer.parseInt(br.readLine());
 
+    used = new boolean[11];     // 카드 숫자의 범위가 10까지이기 때문
+    card = new int[n];
+    setNum = new HashSet<Integer>();    // card배열과 중복된 숫자를 저장할 setNum 초기화
+
+    for (int i = 0; i < n; i++)
+      card[i] = Integer.parseInt(br.readLine());
+
+    process(0, 0);  // process 메서드 호출
+    System.out.println(setNum.size());
+  }
+
+  public static void process(int count, int num) {	// num : 현재까지 조합된 숫자
+    if (count == k) {
+      setNum.add(num);
+      return;
+    }
+
+    // 선택한 카드로 가능한 모든 숫자 조합을 만들고 중복 제거
+    for (int i = 0; i < n; i++) {
+      if (used[i]) continue;    // 이미 사용된 카드라면 pass
+
+      // 사용되지 않았다면 사용해보자
+      used[i] = true;
+
+      int temp; // 조합된 숫자 업데이트
+
+      // 카드가 두 자리 숫자라면
+      if (card[i] > 9) temp = num * 100 + card[i];
+      // 한 자리 숫자라면
+      else temp = num * 10 + card[i];
+
+      process(count + 1, temp);
+
+      // 카드 사용 X
+      used[i] = false;
+    }
   }
 }
