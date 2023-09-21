@@ -37,10 +37,12 @@ public class Baekjoon17626 {
     int[] dp = new int[n + 1];
     dp[1] = 1;
 
-    for (int i = 2; i <= n; i++) dp[i] = 5;
 
     for (int i = 2; i <= n; i++) {
-      for (int j = 1; j * j <= i; j++) dp[i] = Math.min(dp[i], dp[i - (j * j)] + 1);
+      dp [i] = dp[i - 1] + 1;
+      for (int j = 1; j * j <= i; j++) {
+        dp[i] = Math.min(dp[i], dp[i - (j * j)] + 1);
+      }
     }
     System.out.println(dp[n]);
   }
