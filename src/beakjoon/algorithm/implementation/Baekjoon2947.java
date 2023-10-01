@@ -42,23 +42,22 @@ public class Baekjoon2947 {
   public static void main(String[] agrs) throws IOException {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     StringTokenizer st = new StringTokenizer(br.readLine());
+    StringBuilder sb = new StringBuilder();
     int[] arr = new int[5];
 
     for (int i = 0; i < 5; i++) arr[i] = Integer.parseInt(st.nextToken());
 
-    while (arr[0] != 1) {
-      for (int i = 0; i < 4; i++) {
-        for (int j = 0; j < i + 1; j++) {
-          if (arr[j] > arr[j + 1]) {
-            int temp = arr[j];
-            arr[j] = arr[j + 1];
-            arr[j + 1] = temp;
-            for (int k = 0; k < 5; k++) System.out.print(arr[k] + " ");
-            System.out.println();
-            break;
-          }
-        } 
-      }
+    for (int i = 0; i < 5; i++) {
+      for (int j = 0; j < 4; j++) {
+        if (arr[j] > arr[j + 1]) {
+          int temp = arr[j];
+          arr[j] = arr[j + 1];
+          arr[j + 1] = temp;
+          for (int k = 0; k < 5; k++) sb.append(arr[k]).append(" ");
+          sb.append('\n');
+        }
+      } 
     }
+    System.out.println(sb);
   }
 }
