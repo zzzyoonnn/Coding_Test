@@ -12,47 +12,47 @@ package beakjoon.individual.Alignment;
 출력
 - 조건에 따라 정렬하여 단어들을 출력한다.
 ex 1)
-입력					출력
-- 13				- i
-	but					im
-	i						it
-	wont				no
-	hesitate		but
-	no					more
-	more				wait
-	no					wont
-	more				yours
-	it					cannot
-	cannot			hesitate
-	wait
-	im
-	yours
+입력              출력
+- 13            - i
+  but             im
+  i               it
+  wont            no
+  hesitate        but
+  no			  more
+  more			  wait
+  no		      wont
+  more			  yours
+  it			  cannot
+  cannot		  hesitate
+  wait
+  im
+  yours
 */
 import java.io.*;
 import java.util.*;
 
 public class Baekjoon1181 {
-	public static void main(String[] agrs) {
-		Scanner sc = new Scanner(System.in);
-		int n = sc.nextInt();
-		String[] word = new String[n];
-		for (int i = 0; i < n; i++) word[i] = sc.next();
+  public static void main(String[] agrs) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    String[] word = new String[n];
+    for (int i = 0; i < n; i++) word[i] = sc.next();
+    
+    Arrays.sort(word, new Comparator<String>() {
+      @Override
+      public int compare(String s1, String s2) {
+        if (s1.length() == s2.length()) return s1.compareTo(s2);
+        else return s1.length() - s2.length();
+      }
+    });
+    
+    StringBuilder sb = new StringBuilder();
+    sb.append(word[0]).append('\n');
 		
-		Arrays.sort(word, new Comparator<String>() {
-			@Override
-			public int compare(String s1, String s2) {
-				if (s1.length() == s2.length()) return s1.compareTo(s2);
-				else return s1.length() - s2.length();
-			}
-		});
-		
-		StringBuilder sb = new StringBuilder();
-		sb.append(word[0]).append('\n');
-		
-		for (int i = 1; i < word.length; i++) {
-			if (!word[i].equals(word[i - 1])) sb.append(word[i]).append('\n');
-			else continue;
-		}
-		System.out.println(sb);
-	}
+    for (int i = 1; i < word.length; i++) {
+      if (!word[i].equals(word[i - 1])) sb.append(word[i]).append('\n');
+      else continue;
+    }
+    System.out.println(sb);
+  }
 }

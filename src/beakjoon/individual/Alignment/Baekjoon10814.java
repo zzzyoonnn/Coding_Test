@@ -14,37 +14,36 @@ package beakjoon.individual.Alignment;
 - 첫째 줄부터 총 N개의 줄에 걸쳐 온라인 저지 회원을 나이 순, 
   나이가 같으면 가입한 순으로 한 줄에 한 명씩 나이와 이름을 공백으로 구분해 출력한다.
 ex 1)
-입력							출력
-- 3							- 20 Sunyoung
-	21 Junkyu				21 Junkyu
-	21 Dohyun				21 Dohyun
-	20 Sunyoung
+입력                 출력
+- 3                 - 20 Sunyoung
+  21 Junkyu	          21 Junkyu
+  21 Dohyun	          21 Dohyun
+  20 Sunyoung
 */
 import java.io.*;
 import java.util.*;
 
 public class Baekjoon10814 {
-	public static void main(String[] agrs) throws IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		int n = Integer.parseInt(br.readLine());
-		String[][] members = new String[n][2];
-		StringTokenizer st;
+  public static void main(String[] agrs) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    int n = Integer.parseInt(br.readLine());
+    String[][] members = new String[n][2];
+    StringTokenizer st;
+    
+    for (int i = 0; i < n; i++) {
+      st = new StringTokenizer(br.readLine());
+      members[i][0] = st.nextToken();
+      members[i][1] = st.nextToken();
+    }
+    Arrays.sort(members, new Comparator<String[]>() {
+      @Override
+      public int compare(String[] m1, String[] m2) {
+        return Integer.parseInt(m1[0]) - Integer.parseInt(m2[0]);
+      }
+    });
 		
-		for (int i = 0; i < n; i++) {
-			st = new StringTokenizer(br.readLine());
-			members[i][0] = st.nextToken();
-			members[i][1] = st.nextToken();
-		}
-		
-		Arrays.sort(members, new Comparator<String[]>() {
-			@Override
-			public int compare(String[] m1, String[] m2) {
-				return Integer.parseInt(m1[0]) - Integer.parseInt(m2[0]);
-			}
-		});
-		
-		for (int i = 0; i < members.length; i++) {
-			System.out.println(members[i][0] + " " + members[i][1]);
-		}
-	}
+    for (int i = 0; i < members.length; i++) {
+      System.out.println(members[i][0] + " " + members[i][1]);
+    }
+  }
 }
