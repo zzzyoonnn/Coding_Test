@@ -74,14 +74,14 @@ public class Baekjoon16937 {
     for (int i = 0; i < n - 1; i++) {
       for (int j = i + 1; j < n; j++) {
         if (attachSticker(sticker[i], sticker[j])) {
-          max_area = Math.max(max_area, sticker[i][2] + sticker[j][2]);
+          max_area = Math.max(max_area, sticker[i][2] + sticker[j][2]);   // 스티커를 붙일 수 있다면 최대 영역으로
         }
       }
     }
     return max_area;
   }
 
-  private static boolean attachSticker(int[] a, int[] b) {
+  private static boolean attachSticker(int[] a, int[] b) {  // 스티커를 붙일 수 있는지 확인
     for (int i = 0; i < 2; i++) {
       for (int j = 0; j < 2; j++) {
         if (a[i] + b[j] <= h && Math.max(a[(i + 1) % 2], b[(i + 1) % 2]) <= w) return true;
