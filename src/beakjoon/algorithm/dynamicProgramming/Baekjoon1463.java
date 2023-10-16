@@ -40,10 +40,6 @@ public class Baekjoon1463 {
         arr[i] = arr[i - 1] + 1;
       }
     }
-
-    for (int i = 2; i < n + 1; i++) {
-      System.out.println(i + " " + arr[i]);
-    }
-
+    System.out.println(arr[n]);
   }
 }
