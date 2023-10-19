@@ -1,7 +1,8 @@
 package programmers.level1;
+// 가장 가까운 글자
 import java.util.Scanner;
 
-public class Hambuger {
+public class Page2_20 {
   public static void main(String[] args) {
     Scanner sc = new Scanner(System.in);
     String s = sc.next();
