@@ -28,6 +28,6 @@ public class Baekjoon2163 {
     int n = Integer.parseInt(st.nextToken());
     int m = Integer.parseInt(st.nextToken());
 
-    System.out.println(n - 1 + ((m - 1) * n));
+    System.out.println((n * m) - 1);
   }
 }
