@@ -1,4 +1,4 @@
-package beakjoon.algorithm.dynamicProgramming;
+package beakjoon.algorithm.DynamicProgramming;
 /*
 문제
 - 정수 X에 사용할 수 있는 연산은 다음과 같이 세 가지 이다.

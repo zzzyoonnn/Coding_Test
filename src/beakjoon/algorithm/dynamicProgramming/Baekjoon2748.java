@@ -1,4 +1,4 @@
-package beakjoon.algorithm.dynamicProgramming;
+package beakjoon.algorithm.DynamicProgramming;
 /*
 문제
 - 피보나치 수는 0과 1로 시작한다. 

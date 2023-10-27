@@ -1,4 +1,4 @@
-package beakjoon.algorithm.dynamicProgramming;
+package beakjoon.algorithm.DynamicProgramming;
 /*
 문제
 - 평소 반상회에 참석하는 것을 좋아하는 주희는 

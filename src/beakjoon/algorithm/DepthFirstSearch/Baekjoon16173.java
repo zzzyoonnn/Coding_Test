@@ -1,4 +1,4 @@
-package beakjoon.algorithm.BreadthFirstSearch;
+package beakjoon.algorithm.DepthFirstSearch;
 /*
 문제
 - ‘쩰리’는 점프하는 것을 좋아하는 젤리다. 
