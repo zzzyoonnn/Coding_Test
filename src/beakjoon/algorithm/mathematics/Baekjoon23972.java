@@ -21,12 +21,14 @@ public class Baekjoon23972 {
   public static void main(String[] agrs) throws IOException {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     StringTokenizer st = new StringTokenizer(br.readLine());
-    int k = Integer.parseInt(st.nextToken());
-    int n = Integer.parseInt(st.nextToken());
+    long k = Long.parseLong(st.nextToken());
+    long n = Long.parseLong(st.nextToken());
 
-    int i = k / n;
-    while (i > 0) {
-      if (i * )
+    long result = -1l;
+    if (n != 1l) {
+      result = k * n / (n - 1l);
+      if (k * n % (n - 1) != 0l) result++;
     }
+    System.out.println(result);
   }
 }
