@@ -1,5 +1,5 @@
 package programmers.level0;
-// [PCCE 기출문제] 5번 / 산책
+// [PCCE 기출문제] 6번 / 가채점
 import java.util.Arrays;
 
 public class Page1_06 {
