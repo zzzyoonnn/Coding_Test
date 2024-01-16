@@ -11,7 +11,7 @@ public class Page3_18 {
 
     String answer = "";
 
-    for (int i = 0; i < code.length(); i += m) {
+    for (int i = 0; i < code.length(); i++) {
       if (i % q == r) answer += code.charAt(i);
     }
     System.out.println(answer);
