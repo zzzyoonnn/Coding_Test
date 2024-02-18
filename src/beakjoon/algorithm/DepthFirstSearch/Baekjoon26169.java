@@ -80,6 +80,5 @@ public class Baekjoon26169 {
       findApple(xx, yy, depth + 1, apple);
       map[x][y] = 0;
     }
-
   }
 }
