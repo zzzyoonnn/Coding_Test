@@ -29,7 +29,8 @@ package beakjoon.algorithm.implementation;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.StringTokenizer;
 
 public class Baekjoon15905 {
@@ -38,56 +39,51 @@ public class Baekjoon15905 {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     int n = Integer.parseInt(br.readLine());    // 참가자 수
 
-    int[] solved = new int[n];
-    int[] penalty = new int[n];
-    int[] rank = new int[n];
-    Arrays.fill(rank, 1);       // 배열을 모두 1로 초기화
-
-    Participant[] participants = new Participant[n];    // 참가자 객체 배열 생성
+    ArrayList<Participant> list = new ArrayList<>();
 
     StringTokenizer st;
     for (int i = 0; i < n; i++) {
       st = new StringTokenizer(br.readLine());
-      solved[i] = Integer.parseInt(st.nextToken());
-      penalty[i] = Integer.parseInt(st.nextToken());
-      participants[i] = new Participant(i, solved[i], penalty[i]);  // 참가자 객체 생성 및 배열에 저장
-    }
-    Arrays.sort(participants);  // 참가자를 해결한 문제 수로 내림차순 정렬
+      int solved = Integer.parseInt(st.nextToken());
+      int penalty = Integer.parseInt(st.nextToken());
 
-    // 순위를 계산하여 rank 배열에 저장
-    for (int i = 0; i < n; i++) {
-      rank[participants[i].index] = i + 1;  // 참가자의 인덱스에 해당하는 순위를 저장
+      list.add(new Participant(solved, penalty));
     }
 
-    for (int i = 0; i < n; i++) {
-      System.out.println(rank[i] + " ");
+    Collections.sort(list);
+
+    Participant fifth = list.get(4);    // 다섯 번째로 문제를 해결한 참가자의 정보
+
+    int count = 0;
+    for (int i = 5; i < list.size(); i++) {
+      Participant p = list.get(i);
+
+      if (fifth.solved == p.solved) {
+        count++;
+      } else {
+        break;
+      }
     }
 
-    System.out.println(Arrays.toString(rank));
     System.out.println(count);
   }
 
   static class Participant implements Comparable<Participant> {
-    int index;
     int solved;
     int penalty;
 
     // 참가자 객체 생성자
-    public Participant(int index, int solved, int penalty) {
-      this.index = index;
+    public Participant(int solved, int penalty) {
       this.solved = solved;
       this.penalty = penalty;
     }
 
     @Override
     public int compareTo(Participant other) {
-      if (this.solved != other.solved) {
-        // 푼 문제 수로 내림차순
-        return Integer.compare(other.solved, this.solved);      // if (this.penalty > other.penalty)
+      if (this.solved == other.solved) {
+        return this.penalty - other.penalty;    // 푼 문제 수가 같다면, 패널티가 적은 순으로 내림차순 정렬
       } else {
-        // 푼 문제 수가 같다면, 패널티가 적은 순으로 내림차순 정렬
-        count++;
-        return Integer.compare(this.penalty, other.penalty);
+        return other.solved - this.solved;  // 푼 문제 수로 내림차순
       }
     }
   }
