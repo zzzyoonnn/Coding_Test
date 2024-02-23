@@ -40,18 +40,17 @@ public class Baekjoon17127 {
     }
 
     int max = 0;
-    for (int i = 0; i < tree.length - 4; i++) {
+    for (int i = 0; i < 4; i++) {   // 푯말 4개
       int total = 1;
       boolean[] check = new boolean[n];
-      System.out.println(i);
 
-      for (int j = i; j < tree.length - i - 3; j++) {
+      for (int j = i; j < tree.length - 3 + i ; j++) {  // 앞에서부터 4개의 푯말 중 가장 큰 부분
         total *= tree[j];
         check[j] = true;
       }
 
       for (int j = 0; j < tree.length; j++) {
-        if (!check[j]) total += tree[j];
+        if (!check[j]) total += tree[j];    // 가장 큰 부분을 제외한 나머지 부분은 더하기
       }
 
       max = Math.max(max, total);

@@ -26,13 +26,13 @@ public class Baekjoon25644 {
     int n = Integer.parseInt(br.readLine());
 
     int min = Integer.MAX_VALUE;
-    int benefit = 0;
+    int benefit = 0;    // 이득
 
     StringTokenizer st = new StringTokenizer(br.readLine());
     for (int i = 0; i < n; i++) {
-      int stock = Integer.parseInt(st.nextToken());
-      min = Math.min(stock, min);
-      benefit = Math.max(benefit, stock - min);
+      int stock = Integer.parseInt(st.nextToken());     // 주가
+      min = Math.min(stock, min);   // 최저가
+      benefit = Math.max(benefit, stock - min);     // stock - min : 현재 주가 - 최저가
     }
 
     System.out.println(benefit);
