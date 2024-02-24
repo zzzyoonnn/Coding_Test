@@ -46,7 +46,7 @@ public class Baekjoon17127 {
 
       for (int j = i; j < tree.length - 3 + i ; j++) {  // 앞에서부터 4개의 푯말 중 가장 큰 부분
         total *= tree[j];
-        check[j] = true;
+        check[j] = true;    // 가장 큰 부분에 포함된 부분은 check[j] = true;
       }
 
       for (int j = 0; j < tree.length; j++) {
