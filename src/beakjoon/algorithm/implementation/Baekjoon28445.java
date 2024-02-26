@@ -38,8 +38,8 @@ public class Baekjoon28445 {
       }
     }
 
-    String[] color = set.toArray(new String[0]);
-    Arrays.sort(color);
+    String[] color = set.toArray(new String[0]);    // set -> 배열
+    Arrays.sort(color);     // 정렬
 
     for (int i = 0; i < color.length; i++) {
       for (int j = 0; j < color.length; j++) {

@@ -37,7 +37,7 @@ public class Baekjoon1639 {
 
     end = str.length() % 2 == 0 ? str.length() : str.length() - 1;
 
-    end += 2;
+    end += 2;   // while문 처음에 바로 -2해주기 때문에 +2
 
     while (end > 2) {
       start = 0;
@@ -66,5 +66,6 @@ public class Baekjoon1639 {
         e++;
       }
     }
+    System.out.println(0);
   }
 }
