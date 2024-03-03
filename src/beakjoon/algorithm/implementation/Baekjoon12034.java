@@ -42,10 +42,9 @@ public class Baekjoon12034 {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     int t = Integer.parseInt(br.readLine());
     StringTokenizer st;
-    StringBuilder sb;
+    StringBuilder sb = new StringBuilder();
 
     for (int tc = 1; tc <= t; tc++) {
-      sb = new StringBuilder();
       sb.append("Case #").append(tc).append(": ");
       int n = Integer.parseInt(br.readLine());
       int[] price = new int[n * 2];
@@ -59,7 +58,7 @@ public class Baekjoon12034 {
       for (int i = 0; i < price.length; i++) {
         if (!check[i]) {
           check[i] = true;
-          int temp = price[i] * 4 / 3;
+          int temp = price[i]/ 3 * 4;       // 원가. price[i] * 4 / 3 으로 하면 틀린다.
           for (int j = i + 1; j < price.length; j++) {
             if (check[j]) continue;
             if (temp == price[j]) {
@@ -70,7 +69,8 @@ public class Baekjoon12034 {
           }
         }
       }
-      System.out.println(sb);
+      sb.append('\n');
     }
+    System.out.println(sb);
   }
 }
