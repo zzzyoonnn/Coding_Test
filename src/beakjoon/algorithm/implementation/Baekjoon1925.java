@@ -29,11 +29,6 @@ import java.util.StringTokenizer;
 public class Baekjoon1925 {
   public static void main(String[] agrs) throws IOException {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    int[][] spot = new int[3][2];
-
-    for (int i = 0; i < 3; i++) {   // i = 0 → a, i = 1 → b, i = 2 → c
-
-    }
 
     StringTokenizer st = new StringTokenizer(br.readLine());
     int ax = Integer.parseInt(st.nextToken());  // 점 a의 x좌표
@@ -51,7 +46,6 @@ public class Baekjoon1925 {
       System.out.println("X");
       System.exit(0);
     }
-
 
     double A = calcLength(bx, by, cx, cy);
     double B = calcLength(ax, ay, cx, cy);
