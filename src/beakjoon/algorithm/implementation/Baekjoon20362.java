@@ -30,12 +30,12 @@ public class Baekjoon20362 {
     int n = Integer.parseInt(st.nextToken());   // 채팅 개수
     String correct = st.nextToken();  // 정답자의 닉네임
 
-    HashMap<String, Integer> map = new HashMap<>();
+    HashMap<String, Integer> map = new HashMap<>();     // Key : 채팅, Value : 채팅의 등장 횟수(아쉬운 사람 수)
 
     for (int i = 0; i < n; i++) {
       st = new StringTokenizer(br.readLine());
-      String nickname = st.nextToken();
-      String text = st.nextToken();
+      String nickname = st.nextToken(); // 정답자 확인용
+      String text = st.nextToken();     // 채팅을 Key로
 
       if (nickname.equals(correct)) {   // 정답자 닉네임 등장
         if (map.get(text) == null) System.out.println(0);   // 같은 채팅을 입력한 사람이 없다면 0 출력
