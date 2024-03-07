@@ -32,19 +32,19 @@ public class Baekjoon20362 {
 
     HashMap<String, Integer> map = new HashMap<>();
 
-    for (int i =0; i < n; i++) {
+    for (int i = 0; i < n; i++) {
       st = new StringTokenizer(br.readLine());
       String nickname = st.nextToken();
       String text = st.nextToken();
 
-      if (nickname.equals(correct)) {
-        if (map.get(text) == null) System.out.println(0);
-        else System.out.println(map.get(text));
+      if (nickname.equals(correct)) {   // 정답자 닉네임 등장
+        if (map.get(text) == null) System.out.println(0);   // 같은 채팅을 입력한 사람이 없다면 0 출력
+        else System.out.println(map.get(text));             // 같은 채팅을 입력한 횟수 출력
         break;
       }
 
-      if (map.containsKey(text)) map.replace(text, map.get(text) + 1);
-      else map.put(text, 1);
+      if (map.containsKey(text)) map.replace(text, map.get(text) + 1);  // 같은 채팅을 친 사람이 있다면, 채팅 등장 횟수 저장
+      else map.put(text, 1);    // 처음 등장한 채팅이면 map.put 실행
     }
   }
 }
