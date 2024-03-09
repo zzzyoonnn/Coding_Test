@@ -42,12 +42,12 @@ public class Baekjoon12871 {
     else System.out.println(0);
   }
 
-  public static int gcd (int a, int b) {
+  public static int gcd (int a, int b) {    // 최대 공약수
     if (a % b == 0) return b;
     return gcd (b, a % b);
   }
 
-  public static int lcm (int a, int b) {
+  public static int lcm (int a, int b) {    // 최소 공배수
     return a * b / gcd(a, b);
   }
 }
