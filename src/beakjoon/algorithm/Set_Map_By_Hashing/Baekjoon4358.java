@@ -23,6 +23,8 @@ public class Baekjoon4358 {
     int count = 0;
 
     while ((tree = br.readLine()) != null && !tree.isEmpty()) {
+      // (tree = br.readLine()) == null) 만 사용하면 IDE 터미널 창에서 입력을 계속 기다리므로
+      // tree.isEmpty()까지 사용해주어 입력을 EOF로 판별하게 한다. 
 
       if (map.containsKey(tree)) map.replace(tree, map.get(tree) + 1);
       else map.put(tree, 1);
