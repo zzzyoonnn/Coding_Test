@@ -18,7 +18,7 @@ public class Baekjoon4358 {
   public static void main(String[] agrs) throws IOException {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-    TreeMap<String, Integer> map = new TreeMap<>();
+    TreeMap<String, Integer> map = new TreeMap<>();     // 각 종의 이름을 사전순으로 출력
     String tree = "";
     int count = 0;
 
@@ -32,7 +32,7 @@ public class Baekjoon4358 {
 
     for (String key : map.keySet()) {
       System.out.print(key + " ");
-      System.out.printf("%.4f", (double)map.get(key) / count * 100);
+      System.out.printf("%.4f", (double)map.get(key) / count * 100);    // %.4f 소수점 4째자리까지 반올림
       System.out.println();
     }
   }
