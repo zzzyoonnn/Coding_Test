@@ -36,9 +36,11 @@ public class Baekjoon23057 {
 
     for (int i = 1; i <= arr.length; i++) {
       combinations(arr, i, 0, 0, set);      // 주어진 배열에서 가능한 모든 부분집합의 합을 계산
-      // i = 현재 조합의 길이
-      // 첫 번째 0 : 조합 생성 시작 인덱스
-      // 두 번째 0 : 현재까지의 합
+      // arr : 입력된 정수 배열
+      // i : 현재 조합의 길이(length)
+      // 첫 번째 0 : 조합 생성 시작 인덱스(start)
+      // 두 번째 0 : 현재까지의 합(currentSum)
+      // set : 합을 저장하는 HashSet
     }
 
     System.out.println(m - set.size());
