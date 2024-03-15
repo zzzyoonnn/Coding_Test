@@ -1,57 +1,75 @@
 package beakjoon.algorithm.implementation;
 /*
 문제
-- 9694번 한신이는 당내 최고의원을 선출하기 위한 사전 인기 투표의 결과를 받게 되었다.  
-  하지만 공식 선거를 통해서 당내 최고의원이 되기위해선 과반수의 표를 받아야 하기 때문에 
-  현재의 인기 투표 결과를 보고 본 최고의원 선거를 준비하려 한다. 
-  한신이를 도와 누가 최고 득표자인지, 받은 투표수가 과반수득표인지 아닌지를 빠르게 판단할수 있도록 도와주자.
+- 한국에서 나이는 총 3가지 종류가 있다.
+    만 나이: 국제적인 표준 방법이다. 한국에서도 법에서는 만 나이만을 사용한다.
+    세는 나이: 한국에서 보통 나이를 물어보면 세는 나이를 의미한다.
+    연 나이: 법률에서 일괄적으로 사람을 구분하기 위해서 사용하는 나이이다.
+  만 나이는 생일을 기준으로 계산한다. 
+  어떤 사람이 태어났을 때, 그 사람의 나이는 0세이고, 생일이 지날 때마다 1세가 증가한다. 
+  예를 들어, 생일이 2003년 3월 5일인 사람은 2004년 3월 4일까지 0세이고, 2004년 3월 5일부터 2005년 3월 4일까지 1세이다.
+  세는 나이는 생년을 기준으로 계산한다. 
+  어떤 사람이 태어났을 때, 그 사람의 나이는 1세이고, 연도가 바뀔 때마다 1세가 증가한다. 
+  예를 들어, 생일이 2003년 3월 5일인 사람은 2003년 12월 31일까지 1세이고, 2004년 1월 1일부터 2004년 12월 31일까지 2세이다.
+  연 나이는 생년을 기준으로 계산하고, 현재 연도에서 생년을 뺀 값이다. 
+  예를 들어, 생일이 2003년 3월 5일인 사람은 2003년 12월 31일까지 0세이고, 2004년 1월 1일부터 2004년 12월 31일까지 1세이다.
+  어떤 사람의 생년월일과 기준 날짜가 주어졌을 때, 
+  기준 날짜를 기준으로 그 사람의 만 나이, 세는 나이, 연 나이를 모두 구하는 프로그램을 작성하시오.
 입력
-- 맨 위 첫 번째 줄에 T(1 <T< 500)는 테스트케이스 수를 의미한다. 
-  각 테스트 케이스의 첫 번째 줄에는 n이 주어지고 n은 후보자 수를 의미하며, 
-  다음 n줄에는 순서대로 각 후보자가 받은 득표 수를 입력받는다.
-  후보자는 최소 2명에서 10명보다 많지 않으며, 득표 수는 50000표를 넘지 않으며, 
-  후보자들은 분명 자기 자신을 찍기 때문에 최소 1표 이상은 받게된다.
+- 첫째 줄에 어떤 사람이 태어난 연도, 월, 일이 주어진다. 
+  생년월일은 공백으로 구분되어져 있고, 항상 올바른 날짜만 주어진다.
+  둘째 줄에 기준 날짜가 주어진다. 
+  기준 날짜도 공백으로 구분되어져 있으며, 올바른 날짜만 주어진다.
+  입력으로 주어지는 생년월일은 기준 날짜와 같거나 그 이전이다.
+  입력으로 주어지는 연도는 1900년보다 크거나 같고, 2100년보다 작거나 같다.
 출력
-- 각 테스트 케이스는 첫 번째 줄부터 순서대로 출력된다. 
-  최다 득표자가 과반수 득표를 했을경우에는 "majority winner R", 
-  절반 이하의 득표를 하였을 경우엔 "minority winner R"가 되며, 
-  최다 득표자가 없을때(최다 득표자가 1명 초과일 경우)  "no winner"를 출력한다. 
-  이때 R은 최다 득표자의 후보자 번호를 의미하며, 후보자의 번호는 각 케이스에서 1, 2, . . . , n 으로 부여된다.
+- 첫째 줄에 만 나이, 둘째 줄에 세는 나이, 셋째 줄에 연 나이를 출력한다.
  */
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class Baekjoon11637 {
   public static void main(String[] agrs) throws IOException {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    int t = Integer.parseInt(br.readLine());    // 테스트 케이스 개수
+    StringTokenizer st = new StringTokenizer(br.readLine());
+    int year = Integer.parseInt(st.nextToken());        // 생년
+    int month = Integer.parseInt(st.nextToken());       // 월
+    int date = Integer.parseInt(st.nextToken());        // 일
 
-    for (int i = 0; i < t; i++) {
-      int n = Integer.parseInt(br.readLine());      // 후보자 수
-      int max = 0;
-      int candidate = 0;
-      int total = 0;    // 총 득표수
-      boolean check = false;    // 후보자 다수 확인
+    st = new StringTokenizer(br.readLine());
+    int standard_year = Integer.parseInt(st.nextToken());   // 기준년도
+    int standard_month = Integer.parseInt(st.nextToken());  // 기준월
+    int standard_date = Integer.parseInt(st.nextToken());   // 기준일
 
-      for (int j = 1; j <= n; j++) {
-        int count = Integer.parseInt(br.readLine());
-        total += count;
-        if (max <= count) {
-          if (max == count) {
-            check = true;
-          } else {
-            max = count;
-            candidate = j;
-            check = false;
-          }
-        }
+    int age1 = 0;   // 만 나이
+    int age2 = 0;   // 세는 나이
+    int age3 = 0;   // 연 나이
+
+    int n = standard_year - year + 1;
+
+    // 만 나이 계산
+    if (standard_month > month) {       // 만 나이 기준일 지남
+      age1 = standard_year - year;
+    } else if (standard_month == month) {
+      if (standard_date >= date) {           // 만 나이 기준일 지남
+        age1 = standard_year - year;
+      } else {
+        age1 = standard_year - year - 1;
       }
-      if (check) System.out.println("no winner");
-      else {
-        if (max > (total / 2)) System.out.println("majority winner " + candidate);
-        else System.out.println("minority winner " + candidate);
-      }
+    } else {
+      age1 = standard_year - year - 1;
     }
+
+    // 세는 나이
+    age2 = n;
+
+    // 연 나이
+    age3 = n - 1;
+
+    System.out.println(age1);
+    System.out.println(age2);
+    System.out.println(age3);
   }
 }
