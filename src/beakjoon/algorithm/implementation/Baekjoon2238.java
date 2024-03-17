@@ -23,6 +23,8 @@ package beakjoon.algorithm.implementation;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.StringTokenizer;
 
 public class Baekjoon2238 {
@@ -30,9 +32,31 @@ public class Baekjoon2238 {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     StringTokenizer st = new StringTokenizer(br.readLine());
 
-    int a = Integer.parseInt(st.nextToken());
-    int b = Integer.parseInt(st.nextToken());
+    int u = Integer.parseInt(st.nextToken());   // 금액의 상한
+    int n = Integer.parseInt(st.nextToken());   // 경매에 참여한 횟수
 
-    System.out.println(a + b);
+    HashSet<Integer> set = new HashSet<>();
+    HashMap<Integer, String> map = new HashMap<>();
+
+    int min = Integer.MAX_VALUE;
+    for (int i = 0; i < n; i++) {
+      st = new StringTokenizer(br.readLine());
+      String name = st.nextToken();                 // 사람 이름
+      int p = Integer.parseInt(st.nextToken());     // 제시한 가격
+
+      map.put(p, name);
+
+      if (set.contains(p)) {
+        set.remove(p);
+
+        if (p == min) min = Integer.MAX_VALUE;
+        continue;
+      }
+      else set.add(p);
+
+      if (min > p) min = p;
+    }
+
+    System.out.println(map.get(min) + " " + min);
   }
 }
