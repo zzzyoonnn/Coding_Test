@@ -28,18 +28,18 @@ import java.util.StringTokenizer;
 
 public class Baekjoon2644 {
   static int n, m;
+  static int find1, find2;      // 촌 수 계산해야 하는 사람
+  static int answer = -1;       // 촌 수
   static boolean[] visited;
-  static ArrayList<ArrayList<Integer>> graph = new ArrayList<>();   // 양방향 인접 리스트
-
-  static int find1, find2;
-  static int answer = -1;
+  static ArrayList<Integer> list[];
 
   public static void main(String[] agrs) throws IOException {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     n = Integer.parseInt(br.readLine());    // 전체 사람의 수
+    list = new ArrayList[n + 1];
     visited = new boolean[n + 1];
 
-    for (int i = 0; i < n + 1; i++) graph.add(new ArrayList<>());
+    for (int i = 0; i < n + 1; i++) list[i] = new ArrayList<>();
 
     StringTokenizer st = new StringTokenizer(br.readLine());
     find1 = Integer.parseInt(st.nextToken());   // 촌 수 계산해야 하는 사람 번호
@@ -53,27 +53,26 @@ public class Baekjoon2644 {
       int y = Integer.parseInt(st.nextToken());     // x의 자식
 
       // 양방향
-      graph.get(x).add(y);
-      graph.get(y).add(x);
-
-      int count = 0;
-      dfs(find1, count);
-
-      System.out.println(answer);
+      list[x].add(y);
+      list[y].add(x);
     }
+
+    int count = 0;
+    dfs(find1, find2, count);
+
+    System.out.println(answer);
   }
 
-  private static void dfs(int find1, int count) {
+  private static void dfs(int find1, int find2, int count) {
+    if (find1 == find2) {
+      answer = count;
+      return;
+    }
+
     visited[find1] = true;
-
-    for (int i : graph.get(find1)) {
-      if (!visited[i]) {    // 방문하지 않았으면
-        if (i == find2) {
-          answer = count + 1;
-          return;
-        }
-
-        dfs(i, count + 1);  // 다음 촌수로 이동
+    for (int i : list[find1]) {
+      if (!visited[i]) {
+        dfs(i, find2, count + 1);
       }
     }
   }
