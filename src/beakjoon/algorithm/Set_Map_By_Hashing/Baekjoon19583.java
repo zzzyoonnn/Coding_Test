@@ -43,38 +43,31 @@ public class Baekjoon19583 {
   public static void main(String[] agrs) throws IOException {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     StringTokenizer st = new StringTokenizer(br.readLine());
-    String s = st.nextToken();      // 개강 총회를 시작한 시간
-    String e = st.nextToken();      // 개강 총회를 종료한 시간
-    String q = st.nextToken();      // 개강 스트리밍을 종료한 시간
-
-    int start = Integer.parseInt(s.substring(0, 2)) + Integer.parseInt(s.substring(3, 5));
-
-    int end = Integer.parseInt(e.substring(0, 2)) + Integer.parseInt(e.substring(3, 5));
-
-    int streaming = Integer.parseInt(q.substring(0, 2)) + Integer.parseInt(q.substring(3, 5));
+    String start = st.nextToken();      // 개강 총회를 시작한 시간
+    String end = st.nextToken();        // 개강 총회를 종료한 시간
+    String quit = st.nextToken();       // 개강 스트리밍을 종료한 시간
 
     HashSet<String> set = new HashSet<>();
 
     int count = 0;
-    int time_hour, time_minute;
-    String t;
-    String nickname;
-    String time_line;
+    String time;            // 채팅 시간
+    String nickname;        // 채팅자
+    String time_line;       // 채팅 기록
     while ((time_line = br.readLine()) != null && !time_line.isEmpty()) {
       st = new StringTokenizer(time_line);
 
-      t = st.nextToken();
+      time = st.nextToken();
       nickname = st.nextToken();
 
-      int time = Integer.parseInt(t.substring(0, 2)) + Integer.parseInt(t.substring(3, 5));
 
-      if (time <= start) {
+      if (time.compareTo(start) <= 0) {     // 개강총회 시작 직전까지 대화를 했다면 set에 닉네임 추가
         set.add(nickname);
       }
-      else if (time >= end && time <= streaming) {
-        if (set.contains(nickname)) {
-          count++;
-          set.remove(nickname);
+
+      if (time.compareTo(end) >= 0 && time.compareTo(quit) <= 0) {  // 개강총회 끝난 직후부터 개강 스트리밍 종료 직전까지
+        if (set.contains(nickname)) {   // 개강총회 시작 직전까지 대화를 했었다면
+          count++;                      // 확인된 학회원이므로 확인 횟수 추가
+          set.remove(nickname);         // 여러번 말 할 수 있으므로 set에서 닉네임 삭제
         }
       }
     }
