@@ -44,11 +44,7 @@ public class Baekjoon1303 {
         if(s.charAt(j) == 'W') {
           soldier[i][j] = true;
         }
-        else {
-          System.out.println(soldier[i][j]);
-        }
       }
-      System.out.println();
     }
 
     int w = 0;
@@ -58,10 +54,13 @@ public class Baekjoon1303 {
       for (int j = 0; j < n; j++) {
         if (checked[i][j]) continue;
         count = 0;
-        dfs(i, j, soldier[i][j]);
+        System.out.println(count);
         if (soldier[i][j]) {
+          dfs(i, j, true);
           w += (count * count);
         } else {
+          dfs(i, j, false);
+          System.out.println(count);
           b += (count * count);
         }
       }
