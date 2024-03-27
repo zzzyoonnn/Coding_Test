@@ -46,19 +46,27 @@ package beakjoon.algorithm.Set_Map_By_Hashing;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.StringTokenizer;
 
 public class Baekjoon31001 {
+  static int n;
+  static long m;
+
+  static HashMap<String, Integer> stock = new HashMap<>();      // Key : 회사 이름, Value : 주가
+  public static ArrayList<ArrayList<String>> group = new ArrayList<>();         // Key : 회사 이름, Value : 그룹 이름
+  static HashMap<String, Integer> owned = new HashMap<>();      // 보유하고 있는 주식, Key : 회사 이름, Value : 보유 주식 수
+
   public static void main(String[] agrs) throws IOException {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     StringTokenizer st = new StringTokenizer(br.readLine());
-    int n = Integer.parseInt(st.nextToken());       // 주식 시장에 상장한 회사의 개수
-    int m = Integer.parseInt(st.nextToken());       // 하이비가 보유하고 있는 현금
+    n = Integer.parseInt(st.nextToken());       // 주식 시장에 상장한 회사의 개수
+    m = Integer.parseInt(st.nextToken());       // 하이비가 보유하고 있는 현금
     int q = Integer.parseInt(st.nextToken());       // 메뉴 입력의 개수
 
-    HashMap<String, Integer> company = new HashMap<>();      // Key : 회사 이름, Value : 주가
-    HashMap<String, Integer> group = new HashMap<>();        // Key : 회사 이름, Value : 그룹 이름
+    for (int i = 0; i <= 100; i++) group.add(new ArrayList<>());
 
     int g, p;
     String h;
@@ -68,76 +76,109 @@ public class Baekjoon31001 {
       h = st.nextToken();                       // 회사 이름
       p = Integer.parseInt(st.nextToken());     // 초기 주가
 
-      company.put(h, p);
-      group.put(h, g);
+      stock.put(h, p);
+      group.get(g).add(h);
     }
 
-    HashMap<String, Integer> owned = new HashMap<>();       // 보유하고 있는 주식, Key : 회사 이름, Value : 보유 주식 수
-
-    int total = 0;      // 주식 매도 시 보유하고 있을 현금
-    int menu, b, c, d;
+    int menu;
     String a;
     for (int i = 0; i < q; i++) {
       st = new StringTokenizer(br.readLine());
       menu = Integer.parseInt(st.nextToken());
 
-      if (menu == 6) {              // 보유하고 있는 현금 출력
-        System.out.println(m);
-
-      } else if (menu == 7) {       // 보유한 주식 모두 매도시 보유하고 있는 현금
-        System.out.println(total + m);
-
-      } else if (menu >= 1 && menu <= 3) {      // 메뉴 1 ~ 3
-        a = st.nextToken();
-        b = Integer.parseInt(st.nextToken());
-
-        if (menu == 1) {
-          int price = company.get(a) * b;
-          if (price > m) continue;      // 현재 보유하고 있는 현금으로 회사 A의 주식을 B주 살 수 없다면 매수 X
-          else {                // 현재 보유하고 있는 현금으로 회사 A의 주식을 B주 매수
-            owned.put(a, b);
-            m -= price;
-            total += price;
-          }
-        } else if (menu == 2) {
-          int sa = owned.get(a);        // 보유하고 있는 a회사의 주식 수
-
-          if (sa == 0) {
-            continue;
-
-          } else if (b >= sa) {           // 현재 보유하고 있는 주식 수보다 많은 양을 매도하고 싶은 경우, 보유 주식 전량 매도
-            m += sa * company.get(a);
-            total -= sa * company.get(a);
-            owned.remove(a);
-
-          } else {          // a회사의 보유 주식 수 중 b주 매도
-            m += b * company.get(a);
-            total -= b * company.get(a);
-            owned.replace(a, owned.get(a) - b);
-          }
-
-        } else if (menu == 3) {          // 회사 a의 주가 b원 상승
-          company.replace(a, company.get(a) + b);
-          owned.replace(a, owned.get(a) + b);
-        }
-      } else if (menu >= 4 && menu <= 5) {
-        c = Integer.parseInt(st.nextToken());       // c그룹에 속하는 회사
-        d = Integer.parseInt(st.nextToken());       // 상승하는 주가 또는 %
-
-        for (String s : group.keySet()) {
-          if (group.get(s) == c) {    // c그룹에 속하는 회사
-            if (menu == 4) {
-              company.replace(s, company.get(s) + d);       // 주가 d원 상승
-
-            } else if (menu == 5) {
-              double increasePercentage = (double) d / 100;         // 상승하는 퍼센트
-              double increaseAmount = company.get(s) * increasePercentage;      // 현재 주가에 대한 증가량 계산
-              int newPrice = (int) (company.get(s) + increaseAmount);       // 새로운 주가 계산
-              company.replace(s, newPrice);
-            }
-          }
-        }
+      switch(menu) {
+        case 1:
+          buy(st.nextToken(), Integer.parseInt(st.nextToken()));
+          break;
+        case 2:
+          sell(st.nextToken(), Integer.parseInt(st.nextToken()));
+          break;
+        case 3:
+          up(st.nextToken(), Integer.parseInt(st.nextToken()));
+          break;
+        case 4:
+          groupPriceUp(Integer.parseInt(st.nextToken()),Integer.parseInt(st.nextToken()));
+          break;
+        case 5:
+          groupPercentUp(Integer.parseInt(st.nextToken()),Integer.parseInt(st.nextToken()));
+          break;
+        case 6:
+          System.out.println(m);
+          break;
+        case 7:
+          System.out.println(allSell());
+          break;
       }
     }
+  }
+
+  private static void buy(String name, int num) {
+    long price = stock.get(name) * (long)num;
+
+    if (m < price) {    // 현재 보유하고 있는 현금으로 name회사의 주식을 num주 살 수 없다면
+      return;           // 매수 X
+    }
+
+    m -= price;         // 매수
+    owned.put(name, owned.getOrDefault(name, 0) + num);     // 보유 주식 수 갱신
+  }
+
+  private static void sell(String name, int num) {
+    long price = stock.get(name);   // name회사의 주가
+
+    if (!owned.containsKey(name)) {     // name회사의 주식을 보유하지 않음
+      return;
+    }
+
+    int haveStock = owned.get(name);
+
+    if (num >= haveStock) {         // 보유 주식 수보다 더 팔고 싶으면
+      m += haveStock * price;
+      owned.put(name, 0);           // 전량 매도
+
+    } else {        // num주 매도
+      m += num * price;
+      owned.put(name, haveStock - num);
+    }
+  }
+
+  private static void up(String name, int value) {    // name회사의 주가 value원 상승
+    if (!stock.containsKey(name)) return;
+
+    stock.replace(name, stock.get(name) + value);
+  }
+
+  private static void groupPriceUp(int groupNum, int value) {       // groupNum에 속하는 회사들의 주가 value원 상승
+    for (String name : group.get(groupNum)) {
+      stock.put(name, stock.get(name) + value);
+    }
+  }
+
+  private static void groupPercentUp(int groupNum, int per) {       // // groupNum에 속하는 회사들의 주가 per% 상승
+    for (String name : group.get(groupNum)) {
+      double price = stock.get(name);
+      double temp = stock.get(name) * ((Math.abs(per) / 100.0));
+
+      if (per > 0) price += temp;   // 주가 상승
+      else price -= temp;           // 주가 하락
+
+      price = ((int)price / 10) * 10;
+
+      stock.put(name, (int)price);
+    }
+  }
+
+  private static long allSell() {
+    Iterator<String> own = owned.keySet().iterator();       // 보유한 주식 탐색
+    long sum = m;
+
+    while (owned != null && own.hasNext()) {
+      String name = own.next();
+      long price = stock.get(name);
+
+      sum += price * owned.get(name);
+    }
+
+    return sum;
   }
 }
