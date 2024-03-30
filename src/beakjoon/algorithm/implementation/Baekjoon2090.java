@@ -28,15 +28,14 @@ public class Baekjoon2090 {
 
     StringTokenizer st = new StringTokenizer(br.readLine());
 
-    int lcm = 1; 
-    int numerator = 0;  // 분자
-    int denominator = 0; // 분모
+    long lcm = 1;
+    long numerator = 0;  // 분자
+    long denominator = 0; // 분모
 
     for (int i = 0; i < n; i++) {
-      int num = Integer.parseInt(st.nextToken());
-      arr[i] = num;
+      arr[i] = Integer.parseInt(st.nextToken());
 
-      lcm = lcm(lcm, num);    // 최소 공배수 계산
+      lcm = lcm(lcm, arr[i]);    // 최소 공배수 계산
     }
 
     numerator = lcm;       // 최소 공배수로 분자 업데이트
@@ -45,7 +44,7 @@ public class Baekjoon2090 {
       denominator += (lcm / arr[i]);
     }
 
-    int gcd = gcd(numerator, denominator);
+    long gcd = gcd(numerator, denominator);
 
     numerator /= gcd;
     denominator /= gcd;
@@ -54,12 +53,12 @@ public class Baekjoon2090 {
 
   }
 
-  private static int gcd(int a, int b) {        // 최대공약수(Greatest Common Divisor)
+  private static long gcd(long a, long b) {        // 최대공약수(Greatest Common Divisor)
     if (a % b == 0) return b;
     return gcd(b, a % b);
   }
 
-  private static int lcm(int a, int b) {        // 최소공배수(Least Common Multiple)
+  private static long lcm(long a, long b) {        // 최소공배수(Least Common Multiple)
     return a * b / gcd(a, b);
   }
 }
