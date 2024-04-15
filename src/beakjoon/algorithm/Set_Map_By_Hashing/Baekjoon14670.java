@@ -29,9 +29,9 @@ public class Baekjoon14670 {
       int num = Integer.parseInt(st.nextToken());       // 증상의 개수
       for (int j = 0; j < num; j++) {
         int symptom = Integer.parseInt(st.nextToken());
-        if (!medicine.containsKey(symptom)) {
-          sb.setLength(0);
-          sb.append("YOU DIED");
+        if (!medicine.containsKey(symptom)) {           // map에 저장되어 있지 않은 약이라면,
+          sb.setLength(0);                              // StringBuilder 초기화
+          sb.append("YOU DIED");                        // "YOU DIED"를 StringBuilder에 추가
           break;
         }
         sb.append(medicine.get(symptom)).append(' ');
