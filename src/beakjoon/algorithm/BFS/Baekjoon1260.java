@@ -45,9 +45,9 @@ public class Baekjoon1260 {
 
     sb.append('\n');
 
-    visited = new boolean[n + 1];
+    visited = new boolean[n + 1];       // 방문 확인 초기화
 
-    bfs(v);
+    bfs(v);     // v부터 bfs 시작
 
     System.out.println(sb);
   }

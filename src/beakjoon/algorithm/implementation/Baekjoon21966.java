@@ -16,7 +16,6 @@ public class Baekjoon21966 {
       sb.append(s);
     } else {
       String mid = s.substring(12, s.length() - 12);
-      System.out.println(mid);
 
       boolean check = true;
       if (mid.contains(".")) check = false;
