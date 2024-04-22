@@ -30,9 +30,9 @@ public class Baekjoon14716 {
     int count = 0;      // 현수막 글자의 개수
     for (int i = 0; i < m; i++) {
       for (int j = 0; j < n; j++) {
-        if (arr[i][j] == 1 && !checked[i][j]) {
-          dfs(i, j);
-          count++;
+        if (arr[i][j] == 1 && !checked[i][j]) {     // 현수막 글자를 발견했는데 확인되지 않은 글자라면
+          dfs(i, j);        // dfs 실행
+          count++;          // 현수막 글자의 개수 증가
         }
       }
     }
@@ -47,8 +47,8 @@ public class Baekjoon14716 {
       int nx = x + dx[k];
       int ny = y + dy[k];
 
-      if (nx >= 0 && ny >= 0 && nx < m && ny < n) {
-        if (arr[nx][ny] == 1 && !checked[nx][ny]) {
+      if (nx >= 0 && ny >= 0 && nx < m && ny < n) {     // 이동한 글자가 현수막 내
+        if (arr[nx][ny] == 1 && !checked[nx][ny]) {     // 현수막 글자를 발견했는데 확인되지 않은 글자라면
           dfs(nx, ny);
         }
       }

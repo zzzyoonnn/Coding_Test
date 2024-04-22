@@ -28,28 +28,30 @@ import java.io.OutputStreamWriter;
 import java.util.StringTokenizer;
 
 public class Baekjoon1850 {
-	
-	public static void main(String[] agrs) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        StringTokenizer st = new StringTokenizer(br.readLine());	// String arr = br.readLine();
-        															// String[] numbers = arr.split(" ");
-        
-        long a = Long.parseLong(st.nextToken());	// Long.parseLong(numbers[0]);
-        long b = Long.parseLong(st.nextToken());	// Long.parseLong(numbers[1]);
-        long gcd = getGCD(Math.max(a, b), Math.min(a, b));
-        
-        for (long i = 0; i < gcd; i++) {
-        	bw.write("1");	// 1의 개수의 최대 공약수가 결과 수의 1의 개수
-        }					// 따라서 A와 B의 GCD를 구한 후 이 수만큼의 1을 출력하면 됨
-        
-        bw.flush();	// 버퍼에 데이터가 가득 차 있건 아니건, 버퍼에서 강제로 밀어내도록 하는 메서드
-        bw.close();	// close()를 호출하여 스트림을 닫으면 그 스트림을 다시 이용하여 파일에 쓰는 것이 불가능
-        
-    }
-	
-	public static long getGCD(long a, long b) {
-		if (a % b == 0) return b;	// 최대공약수는 두 개의 a, b에 대해서 b와 a % b의 값이 최대공약수와 같으므로 리턴값으로 재귀 사용
-		return getGCD(b, a % b);
-	}
+  // 방문처리에 사용 할 배열선언
+  static boolean[] vistied = new boolean[9];
+  
+  // 그림예시 그래프의 연결상태를 2차원 배열로 표현
+  // 인덱스가 각각의 노드번호가 될 수 있게 0번인덱스는 아무것도 없는 상태라고 생각하시면됩니다.
+  static int[][] graph = {{}, {2,3,8}, {1,6,8}, {1,5}, {5,7}, {3,4,7}, {2}, {4,5}, {1,2}};
+  
+  public static void main(String[] args) {
+      dfs(1);
+  }
+  
+  static void dfs(int nodeIndex) {
+      // 방문 처리
+      vistied[nodeIndex] = true;
+      
+      // 방문 노드 출력
+      System.out.print(nodeIndex + " -> ");
+      
+      // 방문한 노드에 인접한 노드 찾기
+      for (int node : graph[nodeIndex]) {
+          // 인접한 노드가 방문한 적이 없다면 DFS 수행
+          if(!vistied[node]) {
+              dfs(node);
+          }
+      }
+  }
 }

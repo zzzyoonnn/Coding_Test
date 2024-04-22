@@ -29,6 +29,7 @@ public class Baekjoon25329 {
     for (String s : map.keySet()) {     // 통화 요금 계산
       int charge = 10;
       int total = map.get(s) - 100;
+
       if (total > 0) {
         charge += (total / 50) * 3;
         if (total % 50 > 0) charge += 3;

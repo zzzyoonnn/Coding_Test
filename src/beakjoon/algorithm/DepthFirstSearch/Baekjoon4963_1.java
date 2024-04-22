@@ -7,14 +7,13 @@ import java.util.StringTokenizer;
 
 public class Baekjoon4963_1 {
   static int w, h;
-  static int[][] arr;
+  static int[][] map;
   static boolean[][] checked;
-  static int[] dx = {1, -1, 0, 0, -1, -1, 1, 1}, dy = {0, 0, -1, 1, -1, 1, -1, 1};
+  static int[] dx = {1, -1, 0, 0, -1, -1, 1, 1}, dy = {0, 0, -1, 1, -1, 1, -1, 1};      // 상하좌우 대각선 이동
 
   public static void main(String[] args) throws IOException {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-    String s;
     StringTokenizer st;
     while (true) {
       st = new StringTokenizer(br.readLine());
@@ -22,42 +21,43 @@ public class Baekjoon4963_1 {
       w = Integer.parseInt(st.nextToken());         // 너비
       h = Integer.parseInt(st.nextToken());         // 높이
 
-      if (w == 0 && h == 0) break;
+      if (h == 0 && w == 0) break;      // 입력 종료 조건
 
-      arr = new int[w][h];
-      checked = new boolean[w][h];
+      map = new int[h][w];              // 지도 정보를 담은 배열
+      checked = new boolean[h][w];      // 확인용 배열
 
-      for (int i = 0; i < w; i++) {
+      for (int i = 0; i < h; i++) {
         st = new StringTokenizer(br.readLine());
 
-        for (int j = 0; j < h; j++) {
-          arr[i][j] = Integer.parseInt(st.nextToken());
+        for (int j = 0; j < w; j++) {
+          map[i][j] = Integer.parseInt(st.nextToken());
         }
       }
 
       int count = 0;        // 섬의 개수 세기용
-      for (int i = 0; i < w; i++) {
-        for (int j = 0; j < h; j++) {
-          if (!checked[i][j]) {
-            dfs(i, j);
-            count++;
+      for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+          if (!checked[i][j] && map[i][j] == 1) {       // 확인되지 않은 섬이라면
+            dfs(i, j);      // dfs 실행
+            count++;        // 섬의 개수 + 1;
           }
         }
       }
+      System.out.println(count);
     }
   }
 
-  private static void dfs(int i, int j) {
-    checked[i][j] = true;
+  private static void dfs(int x, int y) {
+    checked[x][y] = true;           // 확인
 
     for (int k = 0; k < 8; k++) {
       // 상하좌우 대각선 이동
-      int x = i + dx[k];
-      int y = j + dy[k];
+      int nx = x + dx[k];
+      int ny = y + dy[k];
 
-      if (x >= 0 && y >= 0 && x < w && y < h) {
-        if (!checked[x][y]) {
-          dfs(x, y);
+      if (nx >= 0 && ny >= 0 && nx < h && ny < w) {
+        if (!checked[nx][ny] && map[nx][ny] == 1) {     // 확인되지 않은 섬이라면
+          dfs(nx, ny);                                  // dfs 실행
         }
       }
     }
