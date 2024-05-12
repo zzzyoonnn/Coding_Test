@@ -19,6 +19,7 @@ public class Baekjoon12873 {
       // currentIndex + Math.pow(i, 3)) - 1 : 리스트에서 제거할 요소의 위치
       // % list.size() : 리스트를 순환하며 인덱스를 조정하기 위해
       list.remove(currentIndex);
+      System.out.println(list);
     }
     System.out.println(list.get(0));
   }
