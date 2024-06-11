@@ -9,10 +9,7 @@ public class Baekjoon29766 {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     String s = br.readLine();
 
-    int count = 0;
     String str = s.replaceAll("DKSH", "");
-
-    System.out.println(str);
 
     System.out.println((s.length() - str.length()) / 4);
   }
