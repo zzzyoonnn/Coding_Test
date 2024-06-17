@@ -22,8 +22,6 @@ public class Baekjoon19638 {
     }   // O(n log n)
 
     int i;
-    int count = 0;
-    boolean check = false;
     for (i = 0; i < t; i++) {
       int height = pq.peek();   // O(1)
 
