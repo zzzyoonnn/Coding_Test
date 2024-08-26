@@ -3,7 +3,7 @@ package beakjoon.algorithm.implementation;
 import java.io.*;
 import java.util.*;
 
-public class Baeckjoon20301 {
+public class Baekjoon20301 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());

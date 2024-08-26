@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class Baeckjoon9518 {
+public class Baekjoon9518 {
     static int r, s;
     static char[][] arr;
     static int[] dx = {-1, 0, 1, 1, 1, 0, -1, -1}, dy = {1, 1, 1, 0, -1, -1, -1, 0};

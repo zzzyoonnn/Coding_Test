@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class Baeckjoon18221 {
+public class Baekjoon18221 {
   static int n;
   static String[][] arr;
   static boolean[][] visited;

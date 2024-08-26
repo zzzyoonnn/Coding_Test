@@ -9,9 +9,27 @@ public class Baekjoon1952 {
   public static void main(String[] args) throws IOException {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     StringTokenizer st = new StringTokenizer(br.readLine());
-    int m = Integer.parseInt(st.nextToken());
-    int n = Integer.parseInt(st.nextToken());
+    int row = Integer.parseInt(st.nextToken());
+    int column = Integer.parseInt(st.nextToken());
 
-    System.out.println((m - 1) + (n - 1) + 1);
+
+    int count = 1;
+    //if (row < column) count--;
+    boolean check = true;   // true -> max, false -> min
+    while (true) {
+      if (row == 1 || column == 1) break;
+
+      if (check) {
+        row--;
+        check = false;
+      } else {
+        column--;
+        check = true;
+      }
+
+      count++;
+    }
+
+    System.out.println(count);
   }
 }
