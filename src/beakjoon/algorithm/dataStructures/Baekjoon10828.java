@@ -1,4 +1,4 @@
-package beakjoon.algorithm.stack;
+package beakjoon.algorithm.dataStructures;
 /*
 문제
 - 정수를 저장하는 스택을 구현한 다음,

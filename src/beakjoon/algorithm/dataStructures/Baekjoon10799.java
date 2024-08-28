@@ -1,4 +1,4 @@
-package beakjoon.algorithm.stack;
+package beakjoon.algorithm.dataStructures;
 /*
 문제
 - 여러 개의 쇠막대기를 레이저로 절단하려고 한다. 

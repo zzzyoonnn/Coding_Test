@@ -1,4 +1,4 @@
-package beakjoon.algorithm.stack;
+package beakjoon.algorithm.dataStructures;
 /*
 문제
 - 세계는 균형이 잘 잡혀있어야 한다. 

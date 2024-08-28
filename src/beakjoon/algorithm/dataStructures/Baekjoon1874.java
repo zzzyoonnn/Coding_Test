@@ -1,4 +1,4 @@
-package beakjoon.algorithm.stack;
+package beakjoon.algorithm.dataStructures;
 /*
 문제
 - 스택 (stack)은 기본적인 자료구조 중 하나로, 

@@ -1,4 +1,4 @@
-package beakjoon.algorithm.stack;
+package beakjoon.algorithm.dataStructures;
 /*
 문제
 - 괄호 문자열(Parenthesis String, PS)은 
