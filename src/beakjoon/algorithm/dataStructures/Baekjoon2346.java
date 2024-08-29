@@ -18,28 +18,24 @@ public class Baekjoon2346 {
 
     StringBuilder sb = new StringBuilder();
 
-    while (!deque.isEmpty()) {
-      int num = deque.peek()[1];
-      sb.append(deque.pollFirst()[0]).append(" ");
+    while (true) {
+      int[] arr = deque.pollFirst();
+      int num = arr[1];
+      sb.append(arr[0]).append(" ");
 
-      System.out.println(num);
-      deque.removeFirst();
+      if (deque.isEmpty()) break;
 
       if (num > 0) {
         for (int i = 0; i < num; i++) {
           deque.offerLast(deque.pollFirst());
         }
       } else {
-        for (int i = 0; i < Math.abs(num); i++) {
+        for (int i = Math.abs(num); i > 0; i--) {
           deque.addFirst(deque.pollLast());
         }
       }
-
-      sb.append(deque.poll()[0]).append(" ");
-
     }
 
     System.out.println(sb);
-
   }
 }
