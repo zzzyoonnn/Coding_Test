@@ -10,14 +10,13 @@ public class Baekjoon25704 {
     int n = Integer.parseInt(br.readLine());
     int p = Integer.parseInt(br.readLine());
 
-    double discount = 0;
-    int coupon = 0;
-    int price = 0;
-    if (n >= 20) price = p - (int)(p * 0.25);
-    else if (n >= 15) price = p - 2000;
-    else if (n >= 10) price = p - (int)(p * 0.1);
-    else if (n >= 5) price = p - 500;
+    int price = p;
+    if (n >= 20) price = Math.min(price, p - (p / 4));
+    if (n >= 15) price = Math.min(price, p - 2000);
+    if (n >= 10) price = Math.min(price, p - (p / 10));
+    if (n >= 5) price = Math.min(price, p - 500);
 
+    if (price < 0) price = 0;
 
     System.out.println(price);
   }
