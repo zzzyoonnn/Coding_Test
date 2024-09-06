@@ -3,6 +3,8 @@ package beakjoon.algorithm.implementation;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Objects;
 import java.util.StringTokenizer;
 
 public class Baekjoon17176 {
@@ -11,24 +13,34 @@ public class Baekjoon17176 {
     int n = Integer.parseInt(br.readLine());
     StringTokenizer st = new StringTokenizer(br.readLine());
 
-    StringBuilder sb = new StringBuilder();
+    HashMap<Character, Integer> cipherText = new HashMap<Character, Integer>();
     for (int i = 0; i < n; i++) {
       int num = Integer.parseInt(st.nextToken());
-      //System.out.println((char)('A' + num - 1));
-      char c = (char)('A' + num - 1);
-      System.out.println(c);
 
-      if (num == 0) sb.append(' ');
+      if (num == 0) {
+        cipherText.put(' ', cipherText.getOrDefault(' ', 0) + 1);
+      }
       else if (num >= 1 && num <= 26) {
-        System.out.println((char)('A' + num - 1));
-        sb.append((char)(num + 'A' - 1));
+        cipherText.put((char)('A' + num - 1), cipherText.getOrDefault((char)('A' + num - 1), 0) + 1);
       }
       else {
-        System.out.println((char)('a' + num - 1));
-        sb.append((char)(num + 'a' - 1));
+        cipherText.put((char)('a' + num - 27), cipherText.getOrDefault((char)('a' + num - 27), 0) + 1);
+      }
+    }
+    String str = br.readLine();
+    HashMap<Character, Integer> plainText = new HashMap<>();
+
+    for (int i = 0; i < str.length(); i++) {
+      plainText.put(str.charAt(i), plainText.getOrDefault(str.charAt(i), 0) + 1);
+    }
+
+    for (char c : plainText.keySet()) {
+      if (!Objects.equals(plainText.get(c), cipherText.get(c)) || !cipherText.containsKey(c)) {
+        System.out.println('n');
+        System.exit(0);
       }
     }
 
-    System.out.println(sb);
+    System.out.println('y');
   }
 }
