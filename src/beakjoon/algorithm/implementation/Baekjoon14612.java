@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.util.*;
 
 public class Baekjoon14612 {
+  static StringBuilder sb;
   static class Question {
     int number;
     int time;
@@ -15,9 +16,8 @@ public class Baekjoon14612 {
       this.time = time;
     }
 
-    @Override
-    public String toString() {
-      return "Question{number=" + number + ", time=" + time + "}";
+    public void toStringBuilder(StringBuilder sb) {
+      sb.append(number).append(" ");
     }
   }
 
@@ -39,26 +39,49 @@ public class Baekjoon14612 {
           int time1 = Integer.parseInt(st.nextToken());
 
           list.add(new Question(number1, time1));
+
+          sb = new StringBuilder();
+          for (Question q : list) {
+            q.toStringBuilder(sb);
+          }
+          System.out.println(sb.toString());
           break;
         case "sort":
           Collections.sort(list, new Comparator<Question>() {
             @Override
             public int compare(Question o1, Question o2) {
               if (o1.time == o2.time) {
-                return Integer.compare(o1.number, o2.number);   // Sort by time ascending
+                return Integer.compare(o2.number, o1.number);   // Sort by time descending
               } else {
-                return Integer.compare(o2.time, o1.time);       // Sort by time descending
+                return Integer.compare(o1.time, o2.time);       // Sort by time ascending
               }
             }
           });
-          for (Question q : list) {
-            System.out.println(q);
-          }
+
+          sb = new StringBuilder();
+
+          if (!list.isEmpty()) {
+            for (Question q : list) {
+              q.toStringBuilder(sb);
+            }
+
+            System.out.println(sb.toString());
+          } else System.out.println("sleep");
+
           break;
         case "complete":
           int number2 = Integer.parseInt(st.nextToken());
 
           list.removeIf(q -> q.number == number2);
+
+          sb = new StringBuilder();
+          if (!list.isEmpty()) {
+            for (Question q : list) {
+              q.toStringBuilder(sb);
+            }
+
+            System.out.println(sb.toString());
+          } else System.out.println("sleep");
 
           break;
       }
