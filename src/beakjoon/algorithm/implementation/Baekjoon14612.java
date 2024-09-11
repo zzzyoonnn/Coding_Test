@@ -26,7 +26,7 @@ public class Baekjoon14612 {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     StringTokenizer st = new StringTokenizer(br.readLine());
     int n = Integer.parseInt(st.nextToken());   // number of question
-    int m = Integer.parseInt(st.nextToken());   // number of table
+    // int m = Integer.parseInt(st.nextToken());   // number of table
 
     for (int i = 0; i < n; i++) {
       st = new StringTokenizer(br.readLine());
@@ -42,15 +42,12 @@ public class Baekjoon14612 {
           printList();
           break;
         case "sort":
-          Collections.sort(list, new Comparator<Question>() {
-            @Override
-            public int compare(Question o1, Question o2) {
-              if (o1.time == o2.time) {
-                return Integer.compare(o2.number, o1.number);   // Sort by time descending
-              } else {
-                return Integer.compare(o1.time, o2.time);       // Sort by time ascending
-              }
+          list.sort((o1, o2) -> {
+            int result = Integer.compare(o1.time, o2.time);
+            if (result == 0) {
+              result = Integer.compare(o1.number, o2.number);
             }
+            return result;
           });
           printList();
 
