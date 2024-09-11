@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.util.*;
 
 public class Baekjoon14612 {
+  static ArrayList<Question> list = new ArrayList<>();
   static StringBuilder sb;
   static class Question {
     int number;
@@ -27,8 +28,6 @@ public class Baekjoon14612 {
     int n = Integer.parseInt(st.nextToken());   // number of question
     int m = Integer.parseInt(st.nextToken());   // number of table
 
-    ArrayList<Question> list = new ArrayList<>();
-
     for (int i = 0; i < n; i++) {
       st = new StringTokenizer(br.readLine());
       String order = st.nextToken();
@@ -40,11 +39,7 @@ public class Baekjoon14612 {
 
           list.add(new Question(number1, time1));
 
-          sb = new StringBuilder();
-          for (Question q : list) {
-            q.toStringBuilder(sb);
-          }
-          System.out.println(sb.toString());
+          printList();
           break;
         case "sort":
           Collections.sort(list, new Comparator<Question>() {
@@ -57,34 +52,31 @@ public class Baekjoon14612 {
               }
             }
           });
-
-          sb = new StringBuilder();
-
-          if (!list.isEmpty()) {
-            for (Question q : list) {
-              q.toStringBuilder(sb);
-            }
-
-            System.out.println(sb.toString());
-          } else System.out.println("sleep");
+          printList();
 
           break;
         case "complete":
           int number2 = Integer.parseInt(st.nextToken());
 
           list.removeIf(q -> q.number == number2);
-
-          sb = new StringBuilder();
-          if (!list.isEmpty()) {
-            for (Question q : list) {
-              q.toStringBuilder(sb);
-            }
-
-            System.out.println(sb.toString());
-          } else System.out.println("sleep");
+          printList();
 
           break;
       }
+    }
+  }
+
+  static void printList() {
+    sb = new StringBuilder();
+
+    if (list.isEmpty()) {
+      System.out.println("sleep");
+    } else {
+      for (Question q : list) {
+        q.toStringBuilder(sb);
+      }
+
+      System.out.println(sb.toString());
     }
   }
 }
