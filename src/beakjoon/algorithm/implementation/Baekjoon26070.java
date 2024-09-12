@@ -41,32 +41,31 @@ public class Baekjoon26070 {
 
     calculateMax();
 
+    y += (x / 3);
+    x %= 3;
+
+    calculateMax();
+
     System.out.println(count);
   }
 
   private static void calculateMax() {
-    for (int i = 0; i < 4; i++) {
-      int chicken = Math.min(a, x);
-      count += chicken;
-      a -= chicken;
-      x -= chicken;
+    // Process chicken
+    int chicken = Math.min(a, x);
+    count += chicken;
+    a -= chicken;
+    x -= chicken;
 
-      //System.out.println(a + " " + b + " " + c + " " + x + " " + y + " " + z + " " + count);
+    // Process pizza
+    int pizza = Math.min(b, y);
+    count += pizza;
+    b -= pizza;
+    y -= pizza;
 
-      int pizza = Math.min(b, y);
-      count += pizza;
-      b -= pizza;
-      y -= pizza;
-
-      //System.out.println(a + " " + b + " " + c + " " + x + " " + y + " " + z + " " + count);
-
-      int hamburger = Math.min(c, z);
-      count += hamburger;
-      c -= hamburger;
-      z -= hamburger;
-
-      //System.out.println(a + " " + b + " " + c + " " + x + " " + y + " " + z + " " + count);
-
-    }
+    // Process hamburger
+    int hamburger = Math.min(c, z);
+    count += hamburger;
+    c -= hamburger;
+    z -= hamburger;
   }
 }
