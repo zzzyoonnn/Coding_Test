@@ -11,23 +11,19 @@ public class Baekjoon25377 {
     int n = Integer.parseInt(br.readLine());    // number of store
     StringTokenizer st;
 
-    int min = Integer.MAX_VALUE;
-    int minTime = 0;
+    int min = 1001;
+    int minTime = 1001;
     for (int i = 0; i < n; i++) {
       st = new StringTokenizer(br.readLine());
       int a = Integer.parseInt(st.nextToken());
       int b = Integer.parseInt(st.nextToken());
 
-      int c = b - a;
-      if (c < 0) continue;
+      if (b - a < 0) continue;
 
-      if (min > c) {
-        min = c;
-        minTime = b;
-      }
+      minTime = Math.min(b, minTime);
     }
 
-    if (minTime == 0) minTime = -1;
+    if (minTime == 1001) minTime = -1;
 
     System.out.println(minTime);
   }
