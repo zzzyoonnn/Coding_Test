@@ -12,8 +12,8 @@ public class Baekjoon15787 {
   public static void main(String[] args) throws IOException {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     StringTokenizer st = new StringTokenizer(br.readLine());
-    int n = Integer.parseInt(st.nextToken());   // number of train
-    int m = Integer.parseInt(st.nextToken());   // number of command
+    int n = Integer.parseInt(st.nextToken());   // number of trains
+    int m = Integer.parseInt(st.nextToken());   // number of commands
 
     int[][] arr = new int[n + 1][21];
 
@@ -28,21 +28,20 @@ public class Baekjoon15787 {
           index = Integer.parseInt(st.nextToken());
           seat = Integer.parseInt(st.nextToken());
 
-          if (arr[index][seat] == 1) break;
+          if (arr[index][seat] == 0) arr[index][seat] = 1;
 
-          arr[index][seat] = 1;
           break;
         case 2:
           index = Integer.parseInt(st.nextToken());
           seat = Integer.parseInt(st.nextToken());
 
-          if (arr[index][seat] == 0) break;
+          if (arr[index][seat] == 1) arr[index][seat] = 0;
 
-          arr[index][seat] = 0;
           break;
         case 3:
           index = Integer.parseInt(st.nextToken());
 
+          arr[index][0] = 0;
           for (int tmp = 20; tmp >= 1; tmp--) {
             arr[index][tmp] = arr[index][tmp - 1];
           }
@@ -64,9 +63,9 @@ public class Baekjoon15787 {
     for (int i = 1; i < n + 1; i++) {
       sb = new StringBuilder();
       for (int j = 1; j <= 20; j++) {
-        sb.append(arr[i][j]);
+        sb.append(Integer.toString(arr[i][j]));
       }
-
+      System.out.println(sb.toString());
       set.add(sb.toString());
     }
 
