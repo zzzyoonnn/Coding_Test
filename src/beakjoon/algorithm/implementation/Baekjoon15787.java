@@ -41,7 +41,6 @@ public class Baekjoon15787 {
         case 3:
           index = Integer.parseInt(st.nextToken());
 
-          arr[index][0] = 0;
           for (int tmp = 20; tmp >= 1; tmp--) {
             arr[index][tmp] = arr[index][tmp - 1];
           }
@@ -52,6 +51,7 @@ public class Baekjoon15787 {
           for (int tmp = 2; tmp <= 20; tmp++) {
             arr[index][tmp - 1] = arr[index][tmp];
           }
+          arr[index][20] = 0;
           break;
 
       }
