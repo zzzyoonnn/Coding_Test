@@ -9,31 +9,38 @@ public class Baekjoon2145 {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
     int sum = 0;
-    String num;
     int n;
     while (true) {
-      num = br.readLine();
+      n = Integer.parseInt(br.readLine());
 
-      if (num.equals("0")) break;
+      if (n == 0) break;
 
       sum = 0;
 
-      if (num.length() == 1) {
-        sum = Integer.parseInt(num);
-        System.out.println(sum);
+      if (n < 10) {
+        System.out.println(n);
       } else {
-        for (int i = 0; i < num.length(); i++) {
 
-        }
-      }
+        while (true) {
+          sum = plus(n);
 
-        while (n > 0) {
-          sum += n % 10;
-          System.out.print(n % 10 + " ");
-          n /= 10;
+          n = sum;
+
+          if (n < 10) break;
         }
-        if (sum >= 10) n = sum;
+        System.out.println(n);
       }
     }
+  }
+
+  static int plus(int n) {
+    int sum = 0;
+    while (n != 0) {
+      int temp = n % 10;
+      sum += temp;
+      n /= 10;
+    }
+
+    return sum;
   }
 }
