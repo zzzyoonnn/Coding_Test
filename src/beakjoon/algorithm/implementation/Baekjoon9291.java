@@ -3,70 +3,88 @@ package beakjoon.algorithm.implementation;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.HashSet;
 
 public class Baekjoon9291 {
   public static void main(String[] args) throws IOException {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     int t = Integer.parseInt(br.readLine());
-    String s;
-    boolean[] check;
     String[][] arr;
-    boolean result;
+    boolean check;
+    HashSet<String> set;
+    StringBuilder sb = new StringBuilder();
 
     for (int tc = 1; tc <= t; tc++) {
-      result = false;
-      check = new boolean[10];
+      sb.append("Case ").append(tc);
+
+      check = true;
       arr = new String[9][9];
 
       for (int i = 0; i < 9; i++) {
         arr[i] = br.readLine().split(" ");
       }
+
       if (tc != t) br.readLine();
 
       // Row
       for (int i = 0; i < 9; i++) {
+        set = new HashSet<>();
+
         for (int j = 0; j < 9; j++) {
-          check[Integer.parseInt(arr[i][j])] = true;
+          set.add(arr[i][j]);
         }
 
-        for (int j = 1; j <= 9; j++) {
-          if (check[j]) result = true;
+        if (set.size() != 9) {
+          check = false;
+          break;
         }
       }
 
       // Column
-      if (result) {
-        check = new boolean[10];
+      if (check) {
         for (int i = 0; i < 9; i++) {
+          set = new HashSet<>();
+
           for (int j = 0; j < 9; j++) {
-            check[Integer.parseInt(arr[j][i])] = true;
+            set.add(arr[j][i]);
           }
 
-          for (int j = 1; j <= 9; j++) {
-            if (check[j]) result = true;
+          if (set.size() != 9) {
+            check = false;
+            break;
           }
         }
       }
 
       // 3 x 3
-      if (result) {
-        check = new boolean[10];
-        for (int roop = 0; roop < 3; roop++) {
-          check = new boolean[10];
-          for (int i = roop * 3; i < 3; i++) {
-            for (int j = roop * 3; j < 3; j++) {
-              check[Integer.parseInt(arr[i][j])] = true;
-            }
-          }
+      if (check) {
+        for (int i = 0; i < 3; i++) {
+          for (int j = 0; j < 3; j++) {
+            set = new HashSet<>();
 
-          for (int j = 1; j <= 9; j++) {
-            if (check[j]) result = true;
+            set.add(arr[i * 3][3 * j]);
+            set.add(arr[i * 3][3 * j + 1]);
+            set.add(arr[i * 3][3 * j + 2]);
+
+            set.add(arr[i * 3 + 1][3 * j]);
+            set.add(arr[i * 3 + 1][3 * j + 1]);
+            set.add(arr[i * 3 + 1][3 * j + 2]);
+
+            set.add(arr[i * 3 + 2][3 * j]);
+            set.add(arr[i * 3 + 2][3 * j + 1]);
+            set.add(arr[i * 3 + 2][3 * j + 2]);
+
+            if (set.size() != 9) {
+              check = false;
+              break;
+            }
           }
         }
       }
 
-      if (result) System.out.println("Case " + tc + ": CORRECT");
-      else System.out.println("Case " + tc + ": INCORRECT");
+      if (check) sb.append(": CORRECT").append('\n');
+      else sb.append(": INCORRECT").append('\n');
     }
+    System.out.print(sb);
   }
 }
