@@ -32,6 +32,8 @@ public class Baekjoon14594 {
     int preX = actions[0][0];
     int preY = actions[0][1];
 
+    count += preX - 1;
+
     for (int[] action : actions) {
       int curX = action[0];
       int curY = action[1];
@@ -40,13 +42,14 @@ public class Baekjoon14594 {
         preX = Math.min(preX, curX);
         preY = Math.max(preY, curY);
       } else {
-        count++;
-        count += curX - preY + 1;
+        count += curX - preY;
 
         preX = curX;
         preY = curY;
       }
     }
+
+    if (preY != n) count += (n - preY);
 
     System.out.println(count);
   }
