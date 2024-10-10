@@ -14,8 +14,8 @@ public class Baekjoon3184 {
   public static void main(String[] args) throws IOException {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     StringTokenizer st = new StringTokenizer(br.readLine());
-    int r = Integer.parseInt(st.nextToken());   // row
-    int c = Integer.parseInt(st.nextToken());   // column
+    r = Integer.parseInt(st.nextToken());   // row
+    c = Integer.parseInt(st.nextToken());   // column
 
     arr = new char[r][c];
     checked = new boolean[r][c];
@@ -33,11 +33,8 @@ public class Baekjoon3184 {
 
           if (sheep == 0 && wolf == 0) continue;
 
-          System.out.println(sheep + " " + wolf);
-          if (sheep > wolf) totalSheep++;
-          else totalWolf++;
-
-          //System.out.println(s + " " + w);
+          if (sheep > wolf) totalSheep += sheep;
+          else totalWolf += wolf;
         }
       }
     }
@@ -47,12 +44,9 @@ public class Baekjoon3184 {
 
   private static void dfs(int x, int y) {
     checked[x][y] = true;
-    //System.out.println(arr[x][y]);
 
     if (arr[x][y] == 'o') sheep++;
     if (arr[x][y] == 'v') wolf++;
-
-    //System.out.println(sheep + " " + wolf);
 
     for (int k = 0; k < 4; k++) {
       int nx = x + dx[k];
