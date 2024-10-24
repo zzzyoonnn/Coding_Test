@@ -6,16 +6,16 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class Baekjoon17265 {
-  static int n, result;
+  static int n, max, min;
   static char[][] arr;
-  static boolean[][] visited;
-  static int[] dx = {0, 1}, dy = {1, 0};
 
   public static void main(String[] args) throws IOException {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     n = Integer.parseInt(br.readLine());
     arr = new char[n][n];
-    visited = new boolean[n][n];
+
+    max = Integer.MIN_VALUE / 2;
+    min = Integer.MAX_VALUE / 2;
 
     StringTokenizer st;
     for (int i = 0; i < n; i++) {
@@ -26,33 +26,29 @@ public class Baekjoon17265 {
       }
     }
 
-    dfs(0, 0, '0');
+    dfs(0, 0, arr[0][0] - '0', '0');
 
-    for (int i = 0; i < n; i++){
-      for (int j = 0; j < n; j++){
-        System.out.print(arr[i][j] + " ");
-      }
-      System.out.println();
-    }
+    System.out.println(max + " " + min);
   }
 
-  private static void dfs(int x, int y, char oper) {
-    visited[x][y] = true;
-
-    char now = arr[x][y];
-    switch (now) {
-      case '+':
-        dfs()
+  private static void dfs(int x, int y, int pre, char oper) {
+    int now = arr[x][y] - '0';
+    if (now >= 0 && now <= 5) {
+      if (oper == '+') pre += now;
+      else if (oper == '-') pre -= now;
+      else if (oper == '*') pre *= now;
+    } else {
+      oper = arr[x][y];
     }
 
-
-    for (int k = 0; k < 2; k++) {
-      int nx = x + dx[k];
-      int ny = y + dy[k];
-
-      if (nx >= 0 && ny >= 0 && nx < n && ny < n && !visited[nx][ny]) {
-        dfs(nx, ny);
-      }
+    if (x == n - 1 && y == n - 1) {
+      max = Math.max(max, pre);
+      min = Math.min(min, pre);
+      return;
     }
+
+    if (x < n - 1) dfs(x + 1, y, pre, oper);
+
+    if (y < n - 1) dfs(x, y + 1, pre, oper);
   }
 }
