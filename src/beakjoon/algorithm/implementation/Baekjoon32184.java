@@ -12,8 +12,9 @@ public class Baekjoon32184 {
     int a = Integer.parseInt(st.nextToken());
     int b = Integer.parseInt(st.nextToken());
 
-    int count = (b - a) / 2 + 1;
+    int count = (b - a) / 2;
     if (a % 2 == 0 && b % 2 == 1) count += 2;
+    else count += 1;
 
     System.out.print(count);
   }
