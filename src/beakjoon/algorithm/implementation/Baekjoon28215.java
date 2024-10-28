@@ -1,27 +1,18 @@
 package beakjoon.algorithm.implementation;
 
+import beakjoon.algorithm.ShortestPath.Baekjoon16958;
+
+import javax.swing.text.Position;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.StringTokenizer;
 
 public class Baekjoon28215 {
   static int n, k;
-  static ArrayList<pos> position = new ArrayList<>();
-  static ArrayList<int[]> list = new ArrayList<>();
-  static boolean visited[];
-
-  // 키보드에서 문자의 위치를 저장하기 위한 pos클래스 정의
-  private static class pos {
-    int x;
-    int y;
-
-    public pos(int x, int y) {
-      this.x = x;
-      this.y = y;
-    }
-  }
+  static List<Integer> x, y;
 
   public static void main(String[] args) throws IOException {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -29,64 +20,54 @@ public class Baekjoon28215 {
     n = Integer.parseInt(st.nextToken());   // 집 수
     k = Integer.parseInt(st.nextToken());   // 대피소 수
 
-    visited = new boolean[n];
+    x = new ArrayList<>();
+    y = new ArrayList<>(n);
 
     for (int i = 0; i < n; i++) {
       st = new StringTokenizer(br.readLine());
-      int x = Integer.parseInt(st.nextToken());
-      int y = Integer.parseInt(st.nextToken());
-
-      position.add(new pos(x, y));
+      x.add(Integer.parseInt(st.nextToken()));
+      y.add(Integer.parseInt(st.nextToken()));
     }
 
-    dfs(0, 0, new int[k]);
-    int answer = Integer.MAX_VALUE;
-    for(int comb[] : list) {
-      int rest[] = new int[n - k];
-      boolean check[] = new boolean[n];
-
-      for(int choice : comb) {
-        check[choice] = true;
-      }
-
-      int index = 0;
-      for(int i = 0; i < n; i++) {
-        if(!check[i]) {
-          rest[index] = i;
-          index++;
-        }
-      }
-
-      int max = Integer.MIN_VALUE;
-      for(int i = 0; i < rest.length; i++) {
-        pos n1 = position.get(rest[i]);
-        int gap = 0;
-        int min = Integer.MAX_VALUE;
-        for(int j = 0; j < comb.length; j++) {
-          pos n2 = position.get(comb[j]);
-          gap = Math.abs(n1.x - n2.x) + Math.abs(n1.y - n2.y);
-          min = Math.min(min, gap);
-        }
-        max = Math.max(max, min);
-      }
-      answer = Math.min(answer, max);
-    }
-    System.out.println(answer);
+    System.out.print(solve());
   }
 
-  public static void dfs(int depth, int start, int[] arr) {
-    if(depth == k) {
-      list.add(arr.clone());
-      return;
+  private static int calculateDistance(int a, int b, int c) {
+    int ans = 0;
+    for (int i = 0; i < n; i++) {
+      int dist = Math.min(
+              Math.abs(x.get(i) - x.get(a)) + Math.abs(y.get(i) - y.get(a)),
+              Math.min(
+                      Math.abs(x.get(i) - x.get(b)) + Math.abs(y.get(i) - y.get(b)),
+                      Math.abs(x.get(i) - x.get(c)) + Math.abs(y.get(i) - y.get(c))
+              )
+      );
+      ans = Math.max(ans, dist);
     }
+    return ans;
+  }
+  private static int solve() {
+    int ans = Integer.MAX_VALUE;
 
-    for(int i = start; i < n; i++) {
-      if(!visited[i]) {
-        visited[i] = true;
-        arr[depth] = i;
-        dfs(depth + 1, i + 1, arr);
-        visited[i] = false;
+    if (k == 1) {
+      for (int i = 0; i < n; i++) {
+        ans = Math.min(ans, calculateDistance(i, i, i));
+      }
+    } else if (k == 2) {
+      for (int i = 0; i < n; i++) {
+        for (int j = i; j < n; j++) {
+          ans = Math.min(ans, calculateDistance(i, j, j));
+        }
+      }
+    } else if (k == 3) {
+      for (int i = 0; i < n; i++) {
+        for (int j = i; j < n; j++) {
+          for (int m = j; m < n; m++) {
+            ans = Math.min(ans, calculateDistance(i, j, m));
+          }
+        }
       }
     }
+    return ans;
   }
 }
