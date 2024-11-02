@@ -17,7 +17,8 @@ public class Baekjoon1697 {
     n = Integer.parseInt(st.nextToken());
     k = Integer.parseInt(st.nextToken());
 
-    System.out.println(bfs(n));
+    int result = bfs(n);
+    System.out.println(result);
   }
 
   private static int bfs(int x) {
@@ -25,13 +26,14 @@ public class Baekjoon1697 {
     queue.add(x);
 
     int index = x;
+    int now = 0;
     visited[index] = 1;
 
     while (!queue.isEmpty()) {
-      int now = queue.remove();
+      now = queue.remove();
 
       if (now == k) {
-        return visited[n] - 1;
+        return visited[now] - 1;
       }
 
       if (now - 1 >= 0 && visited[now - 1] == 0) {
@@ -44,7 +46,7 @@ public class Baekjoon1697 {
         queue.add(now + 1);
       }
 
-      if (2 * now <= 10000 && visited[2 * now] == 0) {
+      if (2 * now <= 100000 && visited[2 * now] == 0) {
         visited[2 * now] = visited[now] + 1;
         queue.add(2 * now);
       }
