@@ -5,8 +5,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 
-import static java.util.Collections.reverseOrder;
-
 public class Baekjoon2295 {
   public static void main(String[] args) throws IOException {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -18,8 +16,8 @@ public class Baekjoon2295 {
     }
 
     HashSet<Integer> set = new HashSet<>();
-    for (int i = 0; i < n - 1; i++) {
-      for (int j = i + 1; j < n; j++) {
+    for (int i = 0; i < n; i++){
+      for (int j = 0; j < n; j++){
         set.add(arr[i] + arr[j]);
       }
     }
