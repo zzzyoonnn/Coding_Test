@@ -3,6 +3,7 @@ package beakjoon.algorithm.Set_Map_By_Hashing;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.StringTokenizer;
 
@@ -22,18 +23,20 @@ public class Baekjoon13423 {
       }
 
       // b - a = c - b
-      // 2b = c + a;
-      HashSet<Integer> set = new HashSet<Integer>();
-      for (int i = 0; i < n; i++) {
-        for (int j = i + 1; j < n; j++) {
-          set.add(Math.abs((2 * arr[i]) + arr[j]));
-        }
+      // 2b - a = c;
+      Arrays.sort(arr);
+      HashSet<Integer> set = new HashSet<>();
+      for (int i : arr) {
+        set.add(i);
       }
 
       int result = 0;
-      for (int i = 0; i < n; i++) {
-        if (set.contains(arr[i])) result++;
+      for (int i = 0; i < n; i++) {     // b
+        for (int j = 0; j < i; j++) {   // a
+          if (set.contains(arr[i] + arr[i] - arr[j])) result++;
+        }
       }
+
       System.out.println(result);
     }
   }
