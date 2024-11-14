@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Baekjoon20299 {
@@ -16,26 +15,29 @@ public class Baekjoon20299 {
     int l = Integer.parseInt(st.nextToken());
 
     int count = 0;
+    StringBuilder sb = new StringBuilder();
     ArrayList<String> answer = new ArrayList<String>();
     for (int i = 0; i < n; i++) {
+      boolean check = false;
       String[] arr = br.readLine().split(" ");
       int sum = 0;
       for (int j = 0; j < arr.length; j++) {
-        if (Integer.parseInt(arr[j]) < l) break;
+        if (Integer.parseInt(arr[j]) < l) {
+          check = true;
+          break;
+        }
         sum += Integer.parseInt(arr[j]);
       }
 
-      if (sum >= k) {
-        count++;
-        for (String s : arr) {
-          answer.add(s);
-        }
+      if (check) continue;
+      if (sum < k) continue;
+      count++;
+      for (String s : arr) {
+        sb.append(s).append(" ");
       }
     }
 
     System.out.println(count);
-    for (int i = 0; i < answer.size(); i++) {
-      System.out.print(answer.get(i) + " ");
-    }
+    System.out.println(sb.toString());
   }
 }
