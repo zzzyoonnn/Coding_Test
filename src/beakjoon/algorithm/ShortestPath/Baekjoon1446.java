@@ -60,29 +60,30 @@ public class Baekjoon1446 {
     System.out.print(dist[D]);
   }
 
-  private static void dijkstra(int pos) {
+  private static void dijkstra(int now) {
     PriorityQueue<Road> pq = new PriorityQueue<>();
-    pq.offer(new Road(pos, 0));
+    pq.offer(new Road(now, 0));
     checked = new boolean[D + 1];
-    dist[pos] = 0;
+    dist[now] = 0;
 
     while(!pq.isEmpty()) {
-      Road now = pq.poll();
-      pos = now.destination;
-      checked[pos] = true;
+      Road pos = pq.poll();
+      now = pos.destination;
+      checked[now] = true;
 
-      if (pos == D) break;
+      if (now == D) break;
 
-      // 지름길을 이용하지 않는 경우
-      if (dist[pos + 1] > now.distance + 1) {
-        dist[pos + 1] = now.distance + 1;
-        pq.offer(new Road(pos + 1, dist[pos + 1]));
+      // 1씩 이동하는 경우
+      if (dist[now + 1] > pos.distance + 1) {
+        dist[now + 1] = pos.distance + 1;
+        pq.offer(new Road(now + 1, dist[now + 1]));
       }
 
       // 지름길을 이용하는 경우
-      for (Road next : roads.get(pos)) {
-        if (!checked[next.destination] && dist[next.destination] > dist[pos] + next.distance) {
-          dist[next.destination] = dist[pos] + next.distance;
+      for (Road next : roads.get(now)) {
+        // 방문하지 않은 노드이며, 기존의 최단거리보다 더 짧다면
+        if (!checked[next.destination] && dist[next.destination] > dist[now] + next.distance) {
+          dist[next.destination] = dist[now] + next.distance;   // 더 짧은 거리로 갱신
           pq.offer(new Road(next.destination, dist[next.destination]));
         }
       }
