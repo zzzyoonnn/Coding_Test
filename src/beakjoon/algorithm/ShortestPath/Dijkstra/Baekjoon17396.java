@@ -9,6 +9,11 @@ import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
 public class Baekjoon17396 {
+  static int N, M;
+  static int status[];
+  static long time[];
+  static ArrayList<ArrayList<Branch>> branch;
+
   private static class Branch implements Comparable<Branch> {
     int connection;
     long time;
@@ -28,23 +33,17 @@ public class Baekjoon17396 {
   public static void main(String[] args) throws IOException {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     StringTokenizer st = new StringTokenizer(br.readLine());
-    int N = Integer.parseInt(st.nextToken());   // 분기점 수
-    int M = Integer.parseInt(st.nextToken());   // 분기점을 잇는 길의 수
+    N = Integer.parseInt(st.nextToken());   // 분기점 수
+    M = Integer.parseInt(st.nextToken());   // 분기점을 잇는 길의 수
+
+    initialize();
 
     // 각 분기점이 적의 시야에 보이는가?(0: 안보임, 1: 보임)
-    int[] status = new int[N];
+    status = new int[N];
     st = new StringTokenizer(br.readLine());
     for (int index = 0; index < status.length; index++) {
       status[index] = Integer.parseInt(st.nextToken());
     }
-
-    ArrayList<ArrayList<Branch>> branch = new ArrayList<>();
-    for (int index = 0; index < N; index++) {
-      branch.add(new ArrayList<>());
-    }
-
-    long[] time = new long[N];
-    Arrays.fill(time, Long.MAX_VALUE);
 
     for (int info = 0; info < M; info++) {
       st = new StringTokenizer(br.readLine());
@@ -56,6 +55,11 @@ public class Baekjoon17396 {
       branch.get(b).add(new Branch(a, t));
     }
 
+    long result = dijkstra();
+    System.out.println(result);
+  }
+
+  private static long dijkstra() {
     PriorityQueue<Branch> pq = new PriorityQueue<>();
     pq.offer(new Branch(0, 0));
     boolean[] visited = new boolean[N];
@@ -82,6 +86,16 @@ public class Baekjoon17396 {
       }
     }
 
-    System.out.print(answer);
+    return answer;
+  }
+
+  private static void initialize() {
+    branch = new ArrayList<>();
+    for (int index = 0; index < N; index++) {
+      branch.add(new ArrayList<>());
+    }
+
+    time = new long[N];
+    Arrays.fill(time, Long.MAX_VALUE);
   }
 }
