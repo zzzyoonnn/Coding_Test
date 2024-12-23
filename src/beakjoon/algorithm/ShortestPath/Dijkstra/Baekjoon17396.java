@@ -1,4 +1,4 @@
-package beakjoon.algorithm.Dijkstra;
+package beakjoon.algorithm.ShortestPath.Dijkstra;
 
 import java.io.BufferedReader;
 import java.io.IOException;

@@ -1,9 +1,8 @@
-package beakjoon.algorithm.ShortestPath;
+package beakjoon.algorithm.ShortestPath.FloydWarshall;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Baekjoon2458 {
