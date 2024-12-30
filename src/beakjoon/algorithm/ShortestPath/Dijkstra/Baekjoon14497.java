@@ -7,6 +7,8 @@ import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
 public class Baekjoon14497 {
+  static int N, M, x1, y1, x2, y2;
+  static char[][] map;
   static int[] dx = {-1, 1, 0, 0};
   static int[] dy = {0, 0, -1, 1};
 
@@ -28,32 +30,15 @@ public class Baekjoon14497 {
   }
 
   public static void main(String[] args) throws IOException {
-    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    StringTokenizer st = new StringTokenizer(br.readLine());
-    int N = Integer.parseInt(st.nextToken());
-    int M = Integer.parseInt(st.nextToken());
+    inputData();
 
-    st = new StringTokenizer(br.readLine());
-    // Junan's location
-    int x1 = Integer.parseInt(st.nextToken()) - 1;
-    int y1 = Integer.parseInt(st.nextToken()) - 1;
+    dijkstra();
+  }
 
-    // suspect's location
-    int x2 = Integer.parseInt(st.nextToken()) - 1;
-    int y2 = Integer.parseInt(st.nextToken()) - 1;
-
-    String s;
-    char[][] map = new char[N][M];
-    for (int i = 0; i < N; i++) {
-      s = br.readLine();
-      for (int j = 0; j < M; j++) {
-        map[i][j] = s.charAt(j);
-      }
-    }
-
-    boolean[][] visited = new boolean[N][M];
+  private static void dijkstra() {
     PriorityQueue<Position> pq = new PriorityQueue<>();
     pq.offer(new Position(x1, y1, 0));
+    boolean[][] visited = new boolean[N][M];
 
     while (!pq.isEmpty()) {
       Position now = pq.poll();
@@ -79,6 +64,32 @@ public class Baekjoon14497 {
             pq.offer(new Position(nx, ny, now.count + 1));
           }
         }
+      }
+    }
+  }
+
+  private static void inputData() throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    StringTokenizer st = new StringTokenizer(br.readLine());
+
+    N = Integer.parseInt(st.nextToken());
+    M = Integer.parseInt(st.nextToken());
+
+    st = new StringTokenizer(br.readLine());
+    // Junan's location
+    x1 = Integer.parseInt(st.nextToken()) - 1;
+    y1 = Integer.parseInt(st.nextToken()) - 1;
+
+    // suspect's location
+    x2 = Integer.parseInt(st.nextToken()) - 1;
+    y2 = Integer.parseInt(st.nextToken()) - 1;
+
+    String s;
+    map = new char[N][M];
+    for (int i = 0; i < N; i++) {
+      s = br.readLine();
+      for (int j = 0; j < M; j++) {
+        map[i][j] = s.charAt(j);
       }
     }
   }
