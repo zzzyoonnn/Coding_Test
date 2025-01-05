@@ -3,6 +3,7 @@ package beakjoon.algorithm.priorityQueue;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Comparator;
 import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
@@ -14,13 +15,25 @@ public class Baekjoon23843 {
     int M = Integer.parseInt(st.nextToken());    // 콘센트의 개수
 
     st = new StringTokenizer(br.readLine());
+    PriorityQueue<Integer> machine = new PriorityQueue<>(Comparator.reverseOrder());
+    for (int index = 0; index < N; index++) {
+      machine.offer(Integer.parseInt(st.nextToken()));
+    }
+
     PriorityQueue<Integer> pq = new PriorityQueue<>();
-    for (int index = 0; index < M; index++) {
-      pq.offer(Integer.parseInt(st.nextToken()));
+
+    while (!machine.isEmpty()) {
+      if (pq.size() < M) {
+        pq.add(machine.poll());
+      } else {
+        pq.offer(machine.poll() + pq.poll());
+      }
     }
 
-    while (!pq.isEmpty()) {
-
+    while (pq.size() > 1) {
+      pq.remove();
     }
+
+    System.out.print(pq.poll());
   }
 }

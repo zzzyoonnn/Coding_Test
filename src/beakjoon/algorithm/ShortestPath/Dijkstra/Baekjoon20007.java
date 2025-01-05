@@ -9,32 +9,95 @@ import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
 public class Baekjoon20007 {
+  static int N, M, X, Y;
+  static boolean[] visited;
+  static int[] day;
+  static int[] distance;
+  static ArrayList<ArrayList<Node>> graph;
 
   private static class Node implements Comparable<Node> {
     int destination;
-    long length;
+    int length;
 
-    public Node(int destination, long length) {
+    public Node(int destination, int length) {
       this.destination = destination;
       this.length = length;
     }
 
     @Override
     public int compareTo(Node o) {
-      return Long.compare(this.destination, o.destination);
+      return Integer.compare(this.length, o.length);
     }
   }
 
   public static void main(String[] args) throws IOException {
+    initialize();
+
+    dijkstra();
+
+    deliver();
+  }
+
+  private static void deliver() {
+    int total = 0;
+    int day = 1;
+    for (int index : distance) {
+      if ((index * 2) > X) {
+        day = -1;
+        break;
+      }
+
+      total += (index * 2);
+
+      if (total > X) {
+        day++;
+        total = (index * 2);
+      }
+    }
+
+    System.out.print(day);
+  }
+
+  private static void dijkstra() {
+    PriorityQueue<Node> pq = new PriorityQueue<>();
+    pq.offer(new Node(Y, 0));
+    int INF = Integer.MAX_VALUE;
+    Arrays.fill(distance, INF);
+    Arrays.fill(day, -1);
+    day[Y] = 1;
+    distance[Y] = 0;
+
+    while (!pq.isEmpty()) {
+      Node now = pq.poll();
+
+      if (visited[now.destination]) continue;
+      visited[now.destination] = true;
+
+      for (Node neighbor : graph.get(now.destination)) {
+        if (distance[neighbor.destination] > distance[now.destination] + neighbor.length) {
+          distance[neighbor.destination] = distance[now.destination] + neighbor.length;
+          pq.offer(new Node(neighbor.destination, distance[neighbor.destination]));
+        }
+      }
+    }
+
+    Arrays.sort(distance);
+  }
+
+  private static void initialize() throws IOException {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     StringTokenizer st = new StringTokenizer(br.readLine());
 
-    int N = Integer.parseInt(st.nextToken());
-    int M = Integer.parseInt(st.nextToken());
-    int X = Integer.parseInt(st.nextToken());
-    int Y = Integer.parseInt(st.nextToken());
+    N = Integer.parseInt(st.nextToken());
+    M = Integer.parseInt(st.nextToken());
+    X = Integer.parseInt(st.nextToken());
+    Y = Integer.parseInt(st.nextToken());
 
-    ArrayList<ArrayList<Node>> graph = new ArrayList<>();
+    visited = new boolean[N];
+    day = new int[N];
+    distance = new int[N];
+
+    graph = new ArrayList<>();
     for (int index = 0; index <= N - 1; index++) {
       graph.add(new ArrayList<>());
     }
@@ -46,61 +109,9 @@ public class Baekjoon20007 {
       int b = Integer.parseInt(st.nextToken());
       int c = Integer.parseInt(st.nextToken());
 
+      // 양방향 이동
       graph.get(a).add(new Node(b, c));
       graph.get(b).add(new Node(a, c));
     }
-
-    boolean[] visited = new boolean[N];
-    int[] day = new int[N];
-    long[] distance = new long[N];
-
-    PriorityQueue<Node> pq = new PriorityQueue<>();
-    pq.offer(new Node(Y, 0));
-    int INF = Integer.MAX_VALUE;
-    Arrays.fill(distance, INF);
-    Arrays.fill(day, -1);
-    day[Y] = 1;
-    distance[Y] = 0;
-
-    int answer = 1;
-    int standard = X;
-    while (!pq.isEmpty()) {
-      Node now = pq.poll();
-
-      //System.out.println(now.destination + ", distance : " + Arrays.toString(distance));
-      // System.out.println("day : " + Arrays.toString(day));
-
-      if (visited[now.destination]) continue;
-      visited[now.destination] = true;
-
-      for (Node neighbor : graph.get(now.destination)) {
-        if (distance[neighbor.destination] > distance[now.destination] + neighbor.length) {
-          if (distance[now.destination] + (neighbor.length * 2) <= standard) {
-            distance[neighbor.destination] = distance[now.destination] + (neighbor.length * 2);
-            day[neighbor.destination] = day[now.destination];
-            standard -= neighbor.length * 2;
-            pq.offer(new Node(neighbor.destination, distance[neighbor.destination]));
-          } else {
-            //System.out.println("초과");
-            answer++;
-            day[neighbor.destination] = answer;
-            standard = X;
-            pq.offer(new Node(neighbor.destination, 0));
-
-          }
-        }
-      }
-
-      //System.out.println(Arrays.toString(day));
-
-    }
-    for (int index : day) {
-      if (index == -1) {
-        answer = -1;
-        break;
-      }
-    }
-
-    System.out.println(answer);
   }
 }
