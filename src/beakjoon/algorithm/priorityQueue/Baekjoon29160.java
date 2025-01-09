@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
 public class Baekjoon29160 {
@@ -28,8 +30,10 @@ public class Baekjoon29160 {
     int N = Integer.parseInt(st.nextToken());
     int K = Integer.parseInt(st.nextToken());
 
-    ArrayList<ArrayList<Player>> list = new ArrayList<ArrayList<Player>>();
-    for (int i = 0; i <= N; i++) {
+    ArrayList<ArrayList<Player>> list = new ArrayList<>();
+    //PriorityQueue<Player> players = new PriorityQueue<>();
+
+    for (int i = 0; i <= 11; i++) {
       list.add(new ArrayList<>());
     }
 
@@ -41,12 +45,22 @@ public class Baekjoon29160 {
       list.get(p).add(new Player(p, w));
     }
 
-    K *= 2;
-    int result = 0;
+    int size;
+    int[] selection = new int[12];
     while (K-- > 0) {
-      for (int i = 1; i <= N; i++) {
-        list.get(i).o
+      Arrays.fill(selection, 0);
+
+      for (int index = 1; index <= 11; index++) {
+        Player player = list.get(index).get(0);
+
+        list.remove(index).get(0);
+
+        list.get(index).add(player)
       }
     }
+
+    int sum = Arrays.stream(selection).sum();
+
+    System.out.print(sum);
   }
 }
