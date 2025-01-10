@@ -3,63 +3,46 @@ package beakjoon.algorithm.priorityQueue;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.PriorityQueue;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class Baekjoon29160 {
-  private static class Player implements Comparable<Player> {
-    int position;
-    int value;
-
-    public Player(int position, int value) {
-      this.position = position;
-      this.value = value;
-    }
-
-    @Override
-    public int compareTo(Player o) {
-      return o.value - this.value;
-    }
-  }
-
   public static void main(String[] args) throws IOException {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     StringTokenizer st = new StringTokenizer(br.readLine());
     int N = Integer.parseInt(st.nextToken());
     int K = Integer.parseInt(st.nextToken());
 
-    ArrayList<ArrayList<Player>> list = new ArrayList<>();
-    //PriorityQueue<Player> players = new PriorityQueue<>();
-
-    for (int i = 0; i <= 11; i++) {
-      list.add(new ArrayList<>());
+    ArrayList<PriorityQueue<Integer>> players = new ArrayList<>();
+    for (int index = 0; index <= 11; index++) {
+      players.add(new PriorityQueue<>(Collections.reverseOrder()));
     }
 
-    for (int i = 0; i < N; i++) {
+    for (int index = 0; index < N; index++) {
       st = new StringTokenizer(br.readLine());
       int p = Integer.parseInt(st.nextToken());
       int w = Integer.parseInt(st.nextToken());
 
-      list.get(p).add(new Player(p, w));
+      players.get(p).offer(w);
     }
 
-    int size;
-    int[] selection = new int[12];
-    while (K-- > 0) {
-      Arrays.fill(selection, 0);
-
+    for (int year = 0; year < K; year++) {
       for (int index = 1; index <= 11; index++) {
-        Player player = list.get(index).get(0);
-
-        list.remove(index).get(0);
-
-        list.get(index).add(player)
+        PriorityQueue<Integer> pq = players.get(index);
+        if (!pq.isEmpty()) {
+          int value = pq.poll() - 1;
+          value = Math.max(value, 0);
+          pq.offer(value);
+        }
       }
     }
 
-    int sum = Arrays.stream(selection).sum();
+    int sum = 0;
+    for (int index = 1; index <= 11; index++) {
+      PriorityQueue<Integer> pq = players.get(index);
+      if (!pq.isEmpty()) {
+        sum += pq.poll();
+      }
+    }
 
     System.out.print(sum);
   }
