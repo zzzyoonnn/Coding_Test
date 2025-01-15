@@ -16,12 +16,7 @@ public class Baekjoon14622 {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     int N = Integer.parseInt(br.readLine());  // 라운드 수
 
-    dwScore = 0;
-    gsScore = 0;
-
-    decimalSet = new HashSet<>();
-    dwDecimal = new PriorityQueue<>(Comparator.reverseOrder());
-    gsDecimal = new PriorityQueue<>(Comparator.reverseOrder());
+    initialize();
 
     StringTokenizer st;
     for (int fight = 0; fight < N; fight++) {
@@ -29,13 +24,18 @@ public class Baekjoon14622 {
       int d = Integer.parseInt(st.nextToken());
       int g = Integer.parseInt(st.nextToken());
 
+      System.out.println(decimalSet);
       // 항상 대웅이부터 시작
       // turn
       turn = false;
       checkDecimal(d, dwDecimal);
       turn = true;
       checkDecimal(g, gsDecimal);
+
+    System.out.println(dwScore + " " + gsScore);
+
     }
+
 
     if (dwScore > gsScore) System.out.print("소수의 신 갓대웅");
     else if (dwScore == gsScore) System.out.print("우열을 가릴 수 없음");
@@ -45,29 +45,27 @@ public class Baekjoon14622 {
 
   private static void isNotDecimal() {
     if (!turn) {
-      if (gsDecimal.size() > 3) {
+      if (gsDecimal.size() >= 3) {
         Queue<Integer> temp = new LinkedList<>();
-        for (int i = 1; i <= 3; i++) {
-          if (i == 3) {
-            gsScore += gsDecimal.poll();
-          } else {
-            temp.add(gsDecimal.poll());
-          }
-        }
+        temp.add(gsDecimal.poll());
+        temp.add(gsDecimal.poll());
+        gsScore += gsDecimal.poll();
+
+        gsDecimal.offer(temp.poll());
+        gsDecimal.offer(temp.poll());
       } else {
         gsScore += 1000;
       }
     } else {
       {
-        if (dwDecimal.size() > 3) {
+        if (dwDecimal.size() >= 3) {
           Queue<Integer> temp = new LinkedList<>();
-          for (int i = 1; i <= 3; i++) {
-            if (i == 3) {
-              dwScore += dwDecimal.poll();
-            } else {
-              temp.add(dwDecimal.poll());
-            }
-          }
+          temp.add(dwDecimal.poll());
+          temp.add(dwDecimal.poll());
+          dwScore += dwDecimal.poll();
+
+          dwDecimal.offer(temp.poll());
+          dwDecimal.offer(temp.poll());
         } else {
           dwScore += 1000;
         }
@@ -75,27 +73,38 @@ public class Baekjoon14622 {
     }
   }
 
+  private static void isDecimal(int num, PriorityQueue<Integer> pq) {
+    if (decimalSet.contains(num)) {
+      if (!turn) dwScore -= 1000;
+      else gsScore -= 1000;
+    } else {
+      decimalSet.add(num);
+      pq.offer(num);
+    }
+  }
+
   private static void checkDecimal(int num, PriorityQueue<Integer> pq) {
-
-
     if (num <= 1) {   // 소수 아님
-      return;
+      isNotDecimal();
     }
 
-    for (int i = 2; i <= Math.sqrt(num); i++) {
+    if (num == 2) isDecimal(num, pq);
 
+    for (int i = 2; i < Math.sqrt(num); i++) {
       if (num % i == 0) {
         isNotDecimal();
       }
     }
 
-    if (decimalSet.contains(num)) {
-      if (!turn) dwScore -= 1000;
-      else gsScore -= 1000;
+    isDecimal(num, pq);
+  }
 
-    } else {
-      decimalSet.add(num);
-      pq.offer(num);
-    }
+  private static void initialize() {
+    dwScore = 0;
+    gsScore = 0;
+
+    decimalSet = new HashSet<>();
+    dwDecimal = new PriorityQueue<>(Comparator.reverseOrder());
+    gsDecimal = new PriorityQueue<>(Comparator.reverseOrder());
   }
 }
