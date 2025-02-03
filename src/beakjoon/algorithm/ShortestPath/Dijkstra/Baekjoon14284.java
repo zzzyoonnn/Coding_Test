@@ -61,6 +61,8 @@ public class Baekjoon14284 {
     while (!pq.isEmpty()) {
       Node cur = pq.poll();
       int now = cur.destination;
+
+
       visited[now] = true;
 
       for (Node next : graph.get(now)) {
