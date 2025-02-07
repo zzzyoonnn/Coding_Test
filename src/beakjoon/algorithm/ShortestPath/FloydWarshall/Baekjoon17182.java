@@ -7,9 +7,10 @@ import java.util.StringTokenizer;
 
 public class Baekjoon17182 {
   static int N, K;
-  static int min = 100_000;
+  static int min = Integer.MAX_VALUE / 2;
   static boolean[] visited;
   static int[][] times;
+
   public static void main(String[] args) throws IOException {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     StringTokenizer st = new StringTokenizer(br.readLine());
@@ -27,7 +28,7 @@ public class Baekjoon17182 {
       }
     }
 
-    for (int k = 0; k < K; k++) {
+    for (int k = 0; k < N; k++) {
       for (int i = 0; i < N; i++) {
         for (int j = 0; j < N; j++) {
           times[i][j] = Math.min(times[i][j], times[i][k] + times[k][j]);
@@ -36,14 +37,15 @@ public class Baekjoon17182 {
     }
 
     visited[K] = true;
+    backTracking(K, 1, 0);
 
-    System.out.print(backTracking(K, 1, 0));
+    System.out.print(min);
   }
 
-  private static int backTracking(int start, int depth, int time) {
+  private static void backTracking(int start, int depth, int time) {
     if (depth == N) {
       min = Math.min(time, min);
-      return min;
+      return;
     }
 
     for (int i = 0; i < N; i++) {
@@ -55,6 +57,5 @@ public class Baekjoon17182 {
         visited[i] = false;
       }
     }
-    return -1;
   }
 }

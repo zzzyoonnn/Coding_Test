@@ -79,7 +79,6 @@ public class Baekjoon1753 {
       int now = n.destination;
       visited[now] = true;
 
-
       for (Node next : graph.get(now)) {
         if (!visited[next.destination] && minWeight[next.destination] > next.weight + minWeight[now]) {
           minWeight[next.destination] = next.weight + minWeight[now];
