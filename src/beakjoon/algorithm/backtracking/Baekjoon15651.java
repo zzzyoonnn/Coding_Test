@@ -1,11 +1,11 @@
-package beakjoon.algorithm.DepthFirstSearch;
+package beakjoon.algorithm.backtracking;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class Baekjoon15652 {
+public class Baekjoon15651 {
   static int n, m;
   static int[] arr, printArr;
   static StringBuilder sb = new StringBuilder();
@@ -20,25 +20,26 @@ public class Baekjoon15652 {
     for (int i = 0; i < arr.length; i++) {
       arr[i] = i + 1;
     }
+
     printArr = new int[m];
 
     backTracking(0, 0);
 
-    System.out.println(sb.toString());
+    System.out.print(sb.toString());
   }
 
   private static void backTracking(int index, int depth) {
     if (depth == m) {
-      for (int i : printArr) {
-        sb.append(i).append(" ");
+      for (int i = 0; i < printArr.length; i++) {
+        sb.append(printArr[i]).append(' ');
       }
       sb.append('\n');
       return;
     }
 
-    for (int i = index; i < arr.length; i++) {
-      printArr[depth] = arr[i];
-      backTracking(i, depth + 1);
+    for (int i = 0; i < arr.length; i++) {
+      printArr[index] = arr[i];
+      backTracking(index + 1, depth + 1);
     }
   }
 }

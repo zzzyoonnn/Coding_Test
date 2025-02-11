@@ -1,15 +1,15 @@
-package beakjoon.algorithm.DepthFirstSearch;
+package beakjoon.algorithm.backtracking;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.nio.Buffer;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class Baekjoon15657 {
+public class Baekjoon15654 {
   static int n, m;
   static int[] arr, printArr;
+  static boolean[] check;
   static StringBuilder sb = new StringBuilder();
 
   public static void main(String[] args) throws IOException {
@@ -24,10 +24,10 @@ public class Baekjoon15657 {
       arr[i] = Integer.parseInt(st.nextToken());
     }
 
-    Arrays.sort(arr);
-
+    check = new boolean[n];
     printArr = new int[m];
 
+    Arrays.sort(arr);
     backTracking(0, 0);
 
     System.out.print(sb.toString());
@@ -36,15 +36,19 @@ public class Baekjoon15657 {
   private static void backTracking(int index, int depth) {
     if (depth == m) {
       for (int i : printArr) {
-        sb.append(i).append(' ');
+        sb.append(i).append(" ");
       }
-      sb.append('\n');
+      sb.append("\n");
       return;
     }
 
-    for (int i = index; i < arr.length; i++) {
-      printArr[depth] = arr[i];
-      backTracking(i, depth + 1);
+    for (int i = 0; i < arr.length; i++) {
+      if (!check[i]) {
+        printArr[index] = arr[i];
+        check[i] = true;
+        backTracking(index + 1, depth + 1);
+        check[i] = false;
+      }
     }
   }
 }

@@ -1,4 +1,4 @@
-package beakjoon.algorithm.DepthFirstSearch;
+package beakjoon.algorithm.backtracking;
 
 import java.io.BufferedReader;
 import java.io.IOException;
