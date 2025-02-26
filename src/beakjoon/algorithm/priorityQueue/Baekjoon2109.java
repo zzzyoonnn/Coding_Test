@@ -3,35 +3,46 @@ package beakjoon.algorithm.priorityQueue;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.PriorityQueue;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class Baekjoon2109 {
+  private static class Lecture implements Comparable<Lecture> {
+    int pay;
+    int days;
+
+    public Lecture(int pay, int days) {
+      this.pay = pay;
+      this.days = days;
+    }
+
+    @Override
+    public int compareTo(Lecture o) {
+      return this.days - o.days;
+    }
+  }
+
   public static void main(String[] args) throws IOException {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     int N = Integer.parseInt(br.readLine());
     StringTokenizer st;
 
-    List<int[]> lectures = new ArrayList<>();
+    List<Lecture> lectures = new ArrayList<>();
 
     for (int i = 0; i < N; i++) {
       st = new StringTokenizer(br.readLine());
       int pay = Integer.parseInt(st.nextToken());
       int days = Integer.parseInt(st.nextToken());
 
-      lectures.add(new int[]{pay, days});
+      lectures.add(new Lecture(pay, days));
     }
-
-    lectures.sort((a, b) -> a[1] - b[1]); // 날짜를 기준으로 오름차순 정렬
+    Collections.sort(lectures);
 
     PriorityQueue<Integer> pq = new PriorityQueue<>();
 
-    for (int[] lecture : lectures) {
-      pq.offer(lecture[0]);  // 강연비 추가
-      if (pq.size() > lecture[1]) {
-        pq.poll();  // 가장 작은 강연비 제거
+    for (Lecture l : lectures) {
+      pq.offer(l.pay);
+      if (pq.size() > l.days) {
+        pq.poll();
       }
     }
 
