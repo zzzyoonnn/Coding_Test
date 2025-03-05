@@ -3,9 +3,11 @@ package beakjoon.algorithm.priorityQueue;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.*;
+import java.util.PriorityQueue;
+import java.util.StringTokenizer;
+import java.util.TreeMap;
 
-public class Baekjoon12764 {
+public class Baekjoon12764_1 {
   private static class Usage implements Comparable<Usage> {
     int startTime;
     int endTime;
@@ -51,7 +53,6 @@ public class Baekjoon12764 {
     StringTokenizer st;
     PriorityQueue<Usage> usagePq = new PriorityQueue<>();
     PriorityQueue<User> computerPq = new PriorityQueue<>();
-    PriorityQueue<Integer> available = new PriorityQueue<>();
     TreeMap<Integer, Integer> usageCount = new TreeMap<>();
 
     for (int i = 0; i < N; i++) {
@@ -67,31 +68,20 @@ public class Baekjoon12764 {
     while (!usagePq.isEmpty()) {
       Usage now = usagePq.poll();
 
-      while (!computerPq.isEmpty() && computerPq.peek().endTime <= now.startTime) {
-        available.add(computerPq.poll().index);
-      }
-
-      int nowIndex;
-      if (!available.isEmpty()) {
-        nowIndex = available.poll();
+      if (!computerPq.isEmpty() && computerPq.peek().endTime <= now.startTime) {
+        User user = computerPq.poll();
+        user.usage++;
+        user.endTime = now.endTime;
+        computerPq.add(user);
       } else {
-        nowIndex = index++;
+        computerPq.add(new User(index, 1, now.endTime));
+        index++;
       }
-
-      usageCount.put(nowIndex, usageCount.getOrDefault(nowIndex, 0) + 1);
-      computerPq.add(new User(nowIndex, usageCount.get(nowIndex), now.endTime));
-
       maxComputer = Math.max(maxComputer, index);
 
     }
 
     System.out.println(maxComputer);
-//
-//    while (!computerPq.isEmpty()) {
-//      User user = computerPq.poll();
-//      System.out.println(user.index + " " + user.usage);
-//      usageCount.put(user.index, user.usage);
-//    }
 
     for (int usage : usageCount.values()) {
       System.out.print(usage + " ");
