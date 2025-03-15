@@ -18,7 +18,7 @@ public class Baekjoon24445 {
     r = Integer.parseInt(st.nextToken());
 
     visited = new boolean[n + 1];
-    for (int i = 1; i <= n; i++) {
+    for (int i = 0; i <= n; i++) {
       list.add(new ArrayList<>());
     }
 
