@@ -42,6 +42,7 @@ public class Baekjoon7576 {
 
     if (isDone) {
       System.out.print(0);
+      System.exit(0);
     }
 
     bfs();
@@ -53,11 +54,11 @@ public class Baekjoon7576 {
   private static boolean isChanged() {
     for (int i = 0; i < N; i++) {
       for (int j = 0; j < M; j++) {
-        if (boxes[i][j] == 0) return true;
+        if (boxes[i][j] == 0 && !checked[i][j]) return false;
       }
     }
 
-    return false;
+    return true;
   }
 
   private static void bfs() {
@@ -75,7 +76,7 @@ public class Baekjoon7576 {
 
         queue.add(new int[]{nx, ny, ncount});
         checked[nx][ny] = true;
-        max = Math.min(max, ncount);
+        max = Math.max(max, ncount);
       }
     }
   }
